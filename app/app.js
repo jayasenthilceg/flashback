@@ -6,6 +6,8 @@
         var requesterName = domHelper.ticket.getTicketInfo()
           .helpdesk_ticket.requester_name;
         jQuery('#apptext').text("Ticket createddddsad by " + requesterName);
+        jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
+        });
       }
       else if(page_type == "contact"){
         var agentName = domHelper.contact.getContactInfo().user.name;

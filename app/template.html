@@ -71,10 +71,8 @@
 <link rel="stylesheet" type="text/css" href="{{ 'default.css' | asset_url }}">
 <link rel="stylesheet" type="text/css" href="{{ 'reveal.css' | asset_url }}">
 
-<script id="myTmpl" type="text/x-jsrender">
-								
-	<h2>${name}</h2>										
-
+<script class="myTmpl" type="text/template">
+	<h2> <%- data.name %></h2>
 </script>
 
 jQuery

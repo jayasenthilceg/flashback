@@ -6,11 +6,15 @@
         var requesterName = domHelper.ticket.getTicketInfo()
           .helpdesk_ticket.requester_name;
         jQuery('#apptext').text("Ticket createddddsad by " + requesterName);
-    
-        var htmlTemp = jQuery.template("htmlTempKey", jQuery("#myTmpl").html()); // Get compiled template
-        var data = {name: "Jo"};           // Define data
-        var html = jQuery.tmpl("htmlTempKey", data);      // Render template using data - as HTML string
-        jQuery(".reveal .slides #slide5").html(html[0]);           // Insert HTML string into DOM
+        
+        _.templateSettings.variable = "data";
+        var template = _.template(
+            jQuery( "script.myTmpl" ).html()
+        );
+        
+        var data = {name: "Jo"};       
+        debugger
+        jQuery(".reveal .slides #slide5").html(template(data));           // Insert HTML string into DOM
 
         
 

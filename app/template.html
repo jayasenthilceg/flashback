@@ -3,11 +3,26 @@
   <div class="content">
     
     <div class="app-box">
+    	<a href="#modal">
+    		<button class="btn tooltip" data-toggle="modal" data-target="#myModal">Flashback</button>
+    		</a>
     	
-    		<button class="btn tooltip">Flashback</button>
-    	
-      <p id="apptext" class="app-text text-center">
+      <p id="apptext" class="app-text text-center	">
       </p>
     </div>
   </div>
+  <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
+</div>
+<script type="text/javascript" src="{{ 'jquery.min.js' | asset_url }}"></script>
+<script type="text/javascript" src="{{ 'reveal.js' | asset_url }}"></script>
+<script type="text/javascript" src="{{ 'remodal.js' | asset_url }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ 'remodal.css' | asset_url }}">
+

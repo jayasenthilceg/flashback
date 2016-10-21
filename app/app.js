@@ -7,6 +7,17 @@
           .helpdesk_ticket.requester_name;
         jQuery('#apptext').text("Ticket createddddsad by " + requesterName);
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
+          jQuery("#video-click-btn").click(function(){
+        
+              Reveal.initialize({
+              controls: false,
+              autoSlide: 2000,
+              progress: true,
+
+              // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+              transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/
+            });
+          });
         });
       }
       else if(page_type == "contact"){

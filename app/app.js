@@ -22,14 +22,23 @@
           jQuery("#video-click-btn").click(function(){
         
               Reveal.initialize({
-              controls: false,
-              autoSlide: 2000,
-              progress: true,
+                controls: false,
+                autoSlide: 2000,
+                progress: true,
+                width: "100%",
+                height: "100%",
+                margin: 0,
+                minScale: 1,
+                maxScale: 1,
+                transition: Reveal.getQueryHash().transition,
 
-              // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-              transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/
-            });
+                // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/
+              });
           });
+          jQuery("#reply-btn").click(function(){
+              Reveal.slide(-1); 
+          })
         });
       }
       else if(page_type == "contact"){

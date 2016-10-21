@@ -20,7 +20,7 @@
 
 			<div class="slides">
 
-				<section data-background-color="#0389ad" class="slides-transition" data-transition=getTransition()>
+				<section data-background-color="#0389ad" class="slides-transition" data-transition="slide-in fade-out" style="background-color:#0389ad;">
 					<h1>Reveal.js</h1>
 					<h3>HTML Presentations Made Easy</h3>
 					<p>
@@ -28,7 +28,7 @@
 					</p>
 				</section>
 
-				<section data-background-color="#ffa800" class="slides-transition">
+				<section data-background-color="#ffa800" class="slides-transition" data-transition="zoom" style="background-color:#ffa800;">
 					<h2>Heads Up</h2>
 					<p>
 						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
@@ -41,19 +41,29 @@
 				</section>
 
 				<!-- Example of nested vertical slides -->
-				<section data-background-color="#000000" class="slides-transition">
+				<section data-background-color="#16a085" class="slides-transition" data-transition="fade-in slide-out" style="background-color:#16a085;">
 						<h2>Basement Level 1</h2>
 						<p>Press down or up to navigate.</p>
 				</section>
 
-				<section>
+				<section style="background-color:#ffa800;" data-transition="convex">
 					<h2>Point of View</h2>
 					<p>
 						Press <strong>ESC</strong> to enter the slide overview. Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
 					</p>
 				</section>
-				<section id="slide5">
-				
+
+				<section style="background-color:#0389ad;" data-transition="concave" id="slide5">
+					
+						<h2>"alsdfjklasdfj"</h2>
+						
+				</section>
+
+				<section style="background-color:#0389ad;">
+					
+					<h4 id="reply-btn">Replay</h4>
+						
+						
 				</section>
 
 			</div>
@@ -72,7 +82,6 @@
 <link rel="stylesheet" type="text/css" href="{{ 'reveal.css' | asset_url }}">
 
 <script class="myTmpl" type="text/template">
-	<h2> <%- data.name %></h2>
-</script>
+	<h2> <%- data.name %></h2>										
 
-jQuery
+</script>

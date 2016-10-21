@@ -384,10 +384,12 @@ body {
 .reveal .progress {
 	position: fixed;
 	display: none;
-	height: 3px;
+	height: 30px;
 	width: 100%;
 	bottom: 0;
 	left: 0;
+	background: rgba(113,112,112,0.87);
+	border-radius: 0px;
 	z-index: 10;
 }
 	.reveal .progress:after {
@@ -402,12 +404,12 @@ body {
 		display: block;
 		height: 100%;
 		width: 0px;
-
-		-webkit-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		   -moz-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		    -ms-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		     -o-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		        transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+		background: rgba(0, 0, 0, 0.4);
+		-webkit-transition: width 800ms cubic-bezier(0.0,0.0, 1.0, 1.0);
+    -moz-transition: width 800ms cubic-bezier(0.0,0.0, 1.0, 1.0);
+    -ms-transition: width 800ms cubic-bezier(0.0,0.0, 1.0, 1.0);
+    -o-transition: width 800ms cubic-bezier(0.0,0.0, 1.0, 1.0);
+    transition: width 800ms cubic-bezier(0.0,0.0, 1.0, 1.0);
 	}
 
 
@@ -496,13 +498,11 @@ body {
  *********************************************/
 
 .reveal .slides {
-	position: absolute;
-	max-width: 900px;
-	width: 80%;
-	height: 60%;
-	left: 50%;
-	top: 50%;
-	margin-top: -320px;
+	position: absolute;	
+	width: 96.7%;
+	max-height: 600px;
+	left: 0px;
+	top: -20px;
 	padding: 20px 0px;
 	overflow: visible;
 	z-index: 1;
@@ -531,7 +531,8 @@ body {
 	display: none;
 	position: absolute;
 	width: 100%;
-	min-height: 600px;
+	padding: 50px 20px;
+	min-height: 500px;
 
 	z-index: 10;
 
@@ -554,7 +555,7 @@ body {
 }
 
 .reveal .slides>section {
-	margin-left: -50%;
+	margin-left: 0px;
 }
 
 

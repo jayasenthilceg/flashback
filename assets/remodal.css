@@ -3,9 +3,6 @@
    ========================================================================== */
 
 /* Hide scroll bar */
-body {
-  background: #672788 !important;
-}
 
 html.remodal-is-locked {
   overflow: hidden;

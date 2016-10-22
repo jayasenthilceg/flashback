@@ -58,14 +58,15 @@
         
         // <<< activity fetching starts
         // TODO
-        debugger
+        
         // activity fetching ends >>>
         
         function collectActivities() {
-          // TODO
+          return jQuery('.conversation.minimized,.conversation.activity')
         }
         
         var activities = collectActivities();
+        generateEvents(activities)
         
         // note schema
         // { 
@@ -77,10 +78,12 @@
         // }
         function filterPublicNotes(activities) {
           // TODO
+          return jQuery(activities).filter('.conversation.minimized:not(:has(.private-note))');
         }
         
         function filterPrivateNotes(activities) {
           // TODO
+          return jQuery(activities).filter('.conversation.minimized:has(.private-note)')
         }
         
         // event schema
@@ -93,6 +96,8 @@
         
         function generateEvents(activities) {
           // TODO
+          var events = jQuery(activities).filter('.activity')
+          debugger
         }
         
       });

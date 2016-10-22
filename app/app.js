@@ -44,18 +44,6 @@
 
         console.log("activities toggle is called")
         
-        // <<< user fetching starts
-        jQuery.map(jQuery('.conversation.minimized .avatar-wrap .preview_pic img.thumb'), 
-            function(el) { users[el.alt] = el.src; } 
-        );
-        // user fetching ends >>>
-        
-        // <<< note fetching starts
-        // TODO
-        noteDetails.count = jQuery('.conversation.minimized').length;
-        console.log("notes count: ", noteDetails.count);  
-        // note fetching ends >>>
-        
         // <<< activity fetching starts
         // TODO
         
@@ -67,23 +55,51 @@
         
         var activities = collectActivities();
         generateEvents(activities)
+        filterNotes(activities);
         
         // note schema
         // { 
-        //   user: USER_OBJECT, 
+        //   user: user_name, 
         //   timestamp: TIMESTAMP, 
-        //   type: public | private | agent_reply | custom_reply
-        //   content: HTML_CONTENT, 
-        //   receivers: [USER_OBJECT] 
+        //   type: public | private | requester_reply
+        //   content: HTML_CONTENT
         // }
-        function filterPublicNotes(activities) {
-          // TODO
-          return jQuery(activities).filter('.conversation.minimized:not(:has(.private-note))');
+        function filterNotes(activities) {
+          var notes = [];
+          jQuery(activities).filter('.conversation.minimized').each(function(i, $noteEl) {
+            var note = {};
+            $noteEl = jQuery($noteEl)
+            note.timestamp = $noteEl.data('timestamp');
+            
+            note.content = $noteEl.find('.commentbox .helpdesk_note .details').text().strip();
+            if($noteEl.has('.private-note').length > 0) {
+              note.type = 'private';
+            } else if ($noteEl.has('.commentbox-requester').length > 0) {
+              note.type = 'requester_reply';
+            } else {
+              note.type = 'public';
+            }
+            var $userEl = jQuery($noteEl.find('.avatar-wrap .preview_pic img.thumb')); 
+            users[$userEl.alt] = $userEl.src;
+            note.user = $userEl.alt;
+            
+            notes.push(note);
+          });
+          
+          console.log('filtered notes count : ', notes.length);
+          
+        }
+
+        function getPublicNotes(notes) {
+          return notes.filter(function(note) { console.log(note.type); return note.type == 'public'; });
         }
         
-        function filterPrivateNotes(activities) {
-          // TODO
-          return jQuery(activities).filter('.conversation.minimized:has(.private-note)')
+        function getPrivateNotes(notes) {
+          return notes.filter(function(note) { return note.type == 'private'; });
+        }
+        
+        function getRequesterReplies(notes) {
+          return notes.filter(function(note) { return note.type == 'requester_reply'});
         }
         
         // event schema

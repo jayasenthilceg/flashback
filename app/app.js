@@ -61,6 +61,40 @@
         debugger
         // activity fetching ends >>>
         
+        function collectActivities() {
+          // TODO
+        }
+        
+        var activities = collectActivities();
+        
+        // note schema
+        // { 
+        //   user: USER_OBJECT, 
+        //   timestamp: TIMESTAMP, 
+        //   type: public | private | agent_reply | custom_reply
+        //   content: HTML_CONTENT, 
+        //   receivers: [USER_OBJECT] 
+        // }
+        function filterPublicNotes(activities) {
+          // TODO
+        }
+        
+        function filterPrivateNotes(activities) {
+          // TODO
+        }
+        
+        // event schema
+        // { 
+        //    user: USER_OBJECT, 
+        //    timestamp: TIMESTAMP,
+        //    type: status_change | priority_change | agent_change | group_change | note_addition
+        //    data: STRING | NOTE_ID
+        // }
+        
+        function generateEvents(activities) {
+          // TODO
+        }
+        
       });
       
 

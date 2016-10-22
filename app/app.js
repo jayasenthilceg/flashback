@@ -25,12 +25,14 @@
     },
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";
-        var template = _.template(
-            jQuery( "script.myTmpl" ).html()
-        );
+        this.fetchData();        
+    },
+    replaceTemplate: function(data){
+      var template = _.template(
+        jQuery( "script.myTmpl" ).html()
+      );
         
-        var data = this.fetchData(this);
-        jQuery(".reveal .slides").append(template(data));
+      jQuery(".reveal .slides").prepend(template(data));
     },
 
     users: {},
@@ -40,6 +42,15 @@
 
     collectActivities: function() {
       return jQuery('.conversation.minimized,.conversation.activity')
+    },
+    getColloborators: function(req){
+      var arr = []
+      for(var key in this.users) {
+        if(key !="undefined" && key != req)  
+          arr.push(key);
+      }
+      return arr;
+      // return this.u
     },
     
     filterNotes: function() {
@@ -164,10 +175,33 @@
         that.activities = that.collectActivities();
         that.filterNotes();
         that.generateEvents();
-        // debugger
         that.timeLine();
+        jQuery.map(jQuery('.conversation .avatar-wrap .preview_pic img.thumb'), 
+            function(el) { 
+              // debugger
+              that.users[jQuery(el).attr('alt')] = jQuery(el).data('src'); 
+            } 
+        );
+        var ticket = domHelper.ticket.getTicketInfo().helpdesk_ticket;
+        var data = {
+          requester_name: ticket.requester_name,
+          agent_name: ticket.responder_name,
+          agent_image: that.users[ticket.responder_name] || "/assets/misc/profile_blank_thumb.jpg",
+          requester_image: that.users[ticket.requester_name] || "/assets/misc/profile_blank_thumb.jpg",
+          ticket: ticket,
+          colloborators: that.getColloborators(),
+          image_mapping: that.users
+
+        }
+        debugger
+        that.replaceTemplate(data)
+        // debugger
       });
-      var data = {name: "Jo",agents:["a","b"]}
+
+      // jQuery(document).live('ready',function(event){
+      //   debugger
+      // });
+
       return data;
     }
   }

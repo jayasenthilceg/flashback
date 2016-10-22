@@ -65,7 +65,6 @@
 						
 						
 				</section>
-
 			</div>
 
 		</div>
@@ -82,6 +81,13 @@
 <link rel="stylesheet" type="text/css" href="{{ 'reveal.css' | asset_url }}">
 
 <script class="myTmpl" type="text/template">
-	<h2> <%- data.name %></h2>										
-
+	<section id="slide5">
+		<h2> <%- data.name %></h2>
+	    <% _.each( data.agents, function( agent ){ %>
+		     <li>
+		        <%- agent %>
+		    </li>
+	    <% }); %>
+	</section>
 </script>
+

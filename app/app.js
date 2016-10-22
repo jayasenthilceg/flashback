@@ -45,6 +45,7 @@
     filterNotes: function() {
       // note schema
       // { 
+      //   id: note_id,
       //   user: user_name, 
       //   timestamp: TIMESTAMP, 
       //   type: public | private | requester_reply
@@ -65,8 +66,9 @@
           note.type = 'public';
         }
         var $userEl = jQuery($noteEl.find('.avatar-wrap .preview_pic img.thumb')); 
-        that.users[$userEl.alt] = $userEl.src;
-        note.user = $userEl.alt;
+        that.users[$userEl.attr('alt')] = $userEl.attr('src');
+        note.user = $userEl.attr('alt');
+        note.id = $noteEl.attr('id');
         
         that.notes.push(note);
       });
@@ -108,6 +110,8 @@
         console.log("activities toggle is called")
         that.activities = that.collectActivities();
         that.filterNotes();
+        debugger
+        
       });
       var data = {name: "Jo",agents:["a","b"]}
       return data;

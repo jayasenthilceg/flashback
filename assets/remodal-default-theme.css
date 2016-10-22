@@ -32,16 +32,16 @@
 /* Default theme styles of the wrapper */
 
 .remodal-wrapper {
-  padding: 10px 10px 0;
+  padding: 0;
 }
 
 /* Default theme styles of the modal dialog */
 
 .remodal {
   box-sizing: border-box;
-  width: 95%;
+  width: 100%;
   margin-bottom: 10px;
-  padding: 35px;
+  padding: 0px;
 
   transform: translate3d(0, 0, 0);
 

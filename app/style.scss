@@ -18,3 +18,8 @@
   color: black;
   font-size: 14px;
 }
+.remodal-wrapper.remodal-is-closed {
+  .slide {
+    display: none;
+  }
+}

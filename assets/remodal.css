@@ -33,7 +33,7 @@ html.remodal-is-locked {
 /* Necessary styles of the wrapper */
 
 .remodal-wrapper {
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.6);
   position: fixed;
   z-index: 10000;
   top: 0;
@@ -78,4 +78,8 @@ html.remodal-is-locked {
 .remodal-is-initialized {
   /* Disable Anti-FOUC */
   display: inline-block;
+}
+
+.mt-200 {
+  margin-top: 200px !important;
 }

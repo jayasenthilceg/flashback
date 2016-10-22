@@ -1,39 +1,27 @@
 (function() {
   return {
     initialize: function() {
-      console.log("Basic Demo App!");
       if(page_type == "ticket") {
-        var requesterName = domHelper.ticket.getTicketInfo()
-          .helpdesk_ticket.requester_name;
-        jQuery('#apptext').text("Ticket createddddsad by " + requesterName);
+        var fbbtn = '<li class="flashback-btn ticket-btns"><a href="#modal" id="video-click-btn"><button class="btn tooltip">Flashback</button></a></li>';
+        jQuery(".collapse-content li:nth-child(1)").prepend(fbbtn);
         this.initializeTemplates();
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
           jQuery("#video-click-btn").click(function(){
         
               Reveal.initialize({
                 controls: false,
-                autoSlide: 2000,
-                progress: true,
-                width: "100%",
-                height: "100%",
-                margin: 0,
-                minScale: 1,
-                maxScale: 1,
-                transition: Reveal.getQueryHash().transition,
-
-                // theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-                //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/
+                autoSlide: 2000, //fade/slide/convex/concave/zoom
               });
           });
-          jQuery("#reply-btn").click(function(){
-              Reveal.slide(-1); 
+          jQuery("#replay-btn").click(function(){
+              Reveal.slide(0);
+              setTimeout(function(){
+                jQuery('.playback').trigger('click');
+              },1000) 
           })
         });
       }
-      else if(page_type == "contact"){
-        var agentName = domHelper.contact.getContactInfo().user.name;
-        jQuery('#apptext').text("Hello " + agentName);
-      }
+      
     },
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";

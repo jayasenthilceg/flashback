@@ -4,6 +4,9 @@
 .text-left {
 	text-align: left;
 }
+.text-right {
+	text-align: right;
+}
 .mt-20 {
 	margin-top: 20px;
 }
@@ -110,20 +113,33 @@
 .fb-agent-img {
 	width: 120px;
 }
-.width-65-p {
-	width: 65%;
-	float: left;
+.agent-name {
+	font-size: 48px;
+	color: #fefefe;
 }
-.width-35-p {
-	width: 35%;
+.s-4-sec {
 	float: left;
+	width: 32%;
 }
-.slide-4-img {
-	float: left;
-  margin-right: 30px !important;
-  margin-left: 40px !important;
+.s-4-pos {
+	width: 90%;
+	position: absolute;
+	top: 20%;
+	left: 5%;
 }
-.s-4-agent-img {
-	margin-bottom: -40px !important;
-  margin-left: 20px !important;
+.fb-mail-icon {
+	width: 360px;
+}
+.s-4-pos .req-pos { 
+	margin-left: 40px !important;
+}
+.s-4-pos .agent-pos { 
+	margin-right: 40px !important;
+}
+.agent-img-size {
+	width: 127px;
+}
+.fb-angry-icon {
+	width: 250px;
+	margin-top: -50px !important;
 }

@@ -18,7 +18,7 @@
 			
 				<section data-background="#230e8d" data-transition="zoom" data-background-transition="fade-in" style="background-color:#230e8d;" class="stack">
 					
-					<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-slide-1">	
+					<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size">	
 					<div class="fragment slide-1-content" data-transition="slide-in" data-autoslide="1000" data-animation-type="slide-right">
 						
 						<div class="fragment d-align-right" data-autoslide="1000" data-transition="fade-in">
@@ -39,7 +39,7 @@
 				<section data-background="#f9e400" data-transition="fade-in slide-out" data-background-transition="slide-in" style="background-color:#f9e400;">
 						<div class="t-left slide-2-con-1" data-autoslide="10">
 							<div class="d-align-right">
-								<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown">
+								<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-img-size">
 							</div>
 							<div class="clr-light-blue c-font-large">
 								Created at OCT 2016
@@ -59,7 +59,7 @@
 								Jennie Snyder
 							</div>	
 							<div class="fragment">
-								<img src="{{ 'Agent.png' || asset_url }}" alt="replay" class="animated fadeInDown mt-0"> 		
+								<img src="{{ 'Agent.png' || asset_url }}" alt="replay" class="animated fadeInDown mt-0 agent-img-size"> 		
 							</div>
 						</div>
 
@@ -69,10 +69,10 @@
 				<!-- slide 3 ********************************* -->
 
 
-				<section data-background="#f34704" data-transition="slide-in fade-out" data-background-transition="slide-out" style="background-color:#f34704;">
+				<section data-background="#000000" data-transition="slide-in fade-out" data-background-transition="slide-out" style="background-color:#000000;">
 					<div class="t-left slide-2-con-1" data-autoslide="10">
 						<div class="d-align-right">
-							<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown">
+							<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-img-size">
 						</div>
 						<div class="c-light-orange c-font-large">
 							Created at OCT 2016
@@ -85,7 +85,7 @@
 
 					<div class="fragment slide-3-con-2" data-autoslide="50" >
 							<div class="fragment d-align-left" data-autoslide="1000" data-transition="fade-in">
-								<img src="{{ 'Agent.png' || asset_url }}" alt="replay" class="animated fadeInDown mt-0">
+								<img src="{{ 'Agent.png' || asset_url }}" alt="replay" class="animated fadeInDown mt-0 agent-img-size">
 							</div>
 							<div class="fragment c-white font-extra-large animated fadeInRight">
 								Ticket assigned to
@@ -99,30 +99,57 @@
 
 			<!-- slide 4 ********************************* -->
 
-				<section style="background-color:#d51864;">
-					<div class="width-65-p">
-						<img src="{{ 'agent.png' || asset_url }}" alt="replay" class=" animated fadeInDown fb-agent-img slide-4-img">
-						<div class="font-size-small t-left">
-							Created at OCT 2016
+				<section data-background="#d51864" data-transition="slide-in fade-out" data-background-transition="slide-out" style="background-color:#d51864;">
+					<div class="s-4-pos">
+						<div class="s-4-sec fragment text-left " data-autoslide="1000">
+							<img src="{{ 'Agent.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
+							<div class="agent-name">Jennie Snyder</div>
 						</div>
-						<div class="c-white t-left">
-							Chat window is not working properly
+
+						<div class="s-4-sec fragment" data-autoslide="1000">
+							<img src="{{ 'mail-icon.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 fb-mail-icon">
 						</div>
-					</div>
-					<div class="width-35-p">
-						<img src="{{ 'clock.png' || asset_url }}" alt="replay" class="margin-0 animated fadeInDown fb-agent-img">
-						<img src="{{ 'agent.png' || asset_url }}" alt="replay" class="margin-0 animated fadeInDown fb-agent-img s-4-agent-img">
-					</div>
-					<div>
-						Hello Team, Please be informed that there has been an issue with chat over FreshDesk. Agents are online and available for chat, once chat enters the window, the same is being accepted, however there is no pop up window for the chat conversation. We are unable to trace w....
+
+						<div class="s-4-sec fragment text-right" data-autoslide="1000">
+							<img src="{{ 'Agent.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
+							<div class="agent-name">Jennie Snyder</div>
+						</div>
 					</div>
 				</section>
 
 			<!-- slide 5 ********************************* -->	
-				<section style="background-color:#ffffff;">
+				<section data-background-color="#00eabc" data-transition="slide-in fade-out" data-background-transition="slide-out" style="background-color:#00eabc;">
 					
+					<div class="s-4-pos">
+						<div class="s-4-sec fragment text-left " data-autoslide="1000" data-transition="fade-in">
+							<img src="{{ 'Agent.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
+							<div class="agent-name">Jennie Snyder</div>
+						</div>
+
+						<div class="s-4-sec fragment" data-autoslide="1000">
+							<img src="{{ 'angry.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 fb-angry-icon">
+						</div>
+
+						<div class="s-4-sec fragment text-right" data-autoslide="1000">
+							<img src="{{ 'Agent.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
+							<div class="agent-name">Jennie Snyder</div>
+						</div>
+					</div>
+
 				</section>
-				<section style="background-color:#f34704;">
+
+				<!-- slide 6 ********************************* -->	
+				<section style="background-color:#ffffff;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#ffffff">
+
+					<div class="s-6-top">
+						<div class="fragment">
+							<img src="{{ 'Agent.png' || asset_url }}" alt="" class="animated fadeInDown mt-0">
+							<div class="agent-name">Jennie Snyder</div>
+						</div>
+					</div>
+					<div class="s-6-bottom">
+						
+					</div>
 					
 				</section>
 				<section style="background-color:#ffffff;">

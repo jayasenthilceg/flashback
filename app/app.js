@@ -99,8 +99,51 @@
       //    data: STRING | NOTE_ID
       // }
       // TODO
-      var events = jQuery(this.activities).filter('.activity')
+      // var events = jQuery(this.activities).filter('.activity').each(function(i,a){
+      var knownEventTypes = new Set(["agent", "status", "priority", "group"]);
+      var that = this;
+      jQuery('.conversation.activity').each(function(i,activity){
+        // TODO
+        // Attach user, timestamp
+        // jQuerycollection.each - takes 2 args ! 
+        var eventsFromActivity = [];
+        ([].concat.apply([],jQuery(activity)
+          .find('.commentbox .details').text().strip().split('\\n')
+          .map(function(data) { 
+            return data.strip().split(',')
+          })
+          // we get a flatten array of events
+        ))
+        .each(function(data) {
+          // Array.each - takes one arg ! 
+          var event = data.replace("Set ","").split(" as ");
+          // sanitize these events
+          if(event.length == 2 && knownEventTypes.has(event[0].strip().toLowerCase())) {
+            eventsFromActivity.push({eventType: event[0], eventData: event[1]});
+          }
+        });
+
+        jQuery.merge(that.events, eventsFromActivity);
+        
+      })
       debugger
+      // jQuery('.conversation').each(function(i,conversation){
+      //   if(conversation.has('.activity')) {
+      //     // general event except notes
+      //     var eventsFromActivity = ([].concat.apply([],jQuery(activity)
+      //       .find('.commentbox .details').text().strip().split('\\n')
+      //       .map(function(data) { 
+      //         return data.strip().split(',')
+      //       })
+      //     ))
+      //     .map(function(data) {
+      //       return data.replace("Set ","").split(' as ')
+      //     })  
+      //   } else if(conversation.has('.minimized')) {
+      //     // note event
+      //   }        
+      // })
+      // });
     },
     
     fetchData: function() {
@@ -110,8 +153,7 @@
         console.log("activities toggle is called")
         that.activities = that.collectActivities();
         that.filterNotes();
-        debugger
-        
+        that.generateEvents()
       });
       var data = {name: "Jo",agents:["a","b"]}
       return data;

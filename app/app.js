@@ -45,6 +45,37 @@
         jQuery(".reveal .slides").append(template(data));
     },
     fetchData: function () {
+      var noteDetails = {};
+      var users = {};
+      var activities = [];
+      
+      
+      
+      jQuery('#activity_toggle').trigger('click');
+      jQuery(document).on("activities_toggle", function(event){
+
+        console.log("activities toggle is called")
+        
+        // <<< user fetching starts
+        jQuery.map(jQuery('.conversation.minimized .avatar-wrap .preview_pic img.thumb'), 
+            function(el) { users[el.alt] = el.src; } 
+        );
+        // user fetching ends >>>
+        
+        // <<< note fetching starts
+        // TODO
+        noteDetails.count = jQuery('.conversation.minimized').length;
+        console.log("notes count: ", noteDetails.count);  
+        // note fetching ends >>>
+        
+        // <<< activity fetching starts
+        // TODO
+        debugger
+        // activity fetching ends >>>
+        
+      });
+      
+
       var data = {name: "Jo",agents:["a","b"]}
       return data;
     }

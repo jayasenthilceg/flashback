@@ -164,7 +164,7 @@
         that.activities = that.collectActivities();
         that.filterNotes();
         that.generateEvents();
-        debugger
+        // debugger
         that.timeLine();
       });
       var data = {name: "Jo",agents:["a","b"]}

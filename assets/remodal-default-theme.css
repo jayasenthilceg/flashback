@@ -46,7 +46,7 @@
   transform: translate3d(0, 0, 0);
 
   color: #2b2e38;
-  background: #fff;
+  background: transparent;
 }
 
 .remodal.remodal-is-opening,

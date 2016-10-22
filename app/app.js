@@ -6,7 +6,7 @@
         var requesterName = domHelper.ticket.getTicketInfo()
           .helpdesk_ticket.requester_name;
         jQuery('#apptext').text("Ticket createddddsad by " + requesterName);
-        this.initialize_templates();
+        this.initializeTemplates();
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
           jQuery("#video-click-btn").click(function(){
         
@@ -35,15 +35,18 @@
         jQuery('#apptext').text("Hello " + agentName);
       }
     },
-    initialize_templates: function () {            
+    initializeTemplates: function () {            
         _.templateSettings.variable = "data";
         var template = _.template(
             jQuery( "script.myTmpl" ).html()
         );
         
-        var data = {name: "Jo",agents:["a","b"]};       
-        debugger
+        var data = this.fetchData();
         jQuery(".reveal .slides").append(template(data));
+    },
+    fetchData: function () {
+      var data = {name: "Jo",agents:["a","b"]}
+      return data;
     }
   }
 })();

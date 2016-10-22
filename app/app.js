@@ -106,8 +106,14 @@
         // TODO
         // Attach user, timestamp
         // jQuerycollection.each - takes 2 args ! 
+        var $activity = jQuery(activity);
+        var timestamp = $activity.data('timestamp');
+        var $userEl = $activity.find('.avatar-wrap .preview_pic img.thumb'); 
+        that.users[$userEl.attr('alt')] = $userEl.attr('src');        
+        // debugger
+        // debugger
         var eventsFromActivity = [];
-        ([].concat.apply([],jQuery(activity)
+        ([].concat.apply([],$activity
           .find('.commentbox .details').text().strip().split('\\n')
           .map(function(data) { 
             return data.strip().split(',')
@@ -119,14 +125,13 @@
           var event = data.replace("Set ","").split(" as ");
           // sanitize these events
           if(event.length == 2 && knownEventTypes.has(event[0].strip().toLowerCase())) {
-            eventsFromActivity.push({eventType: event[0], eventData: event[1]});
+            eventsFromActivity.push({eventType: event[0], eventData: event[1],timestamp: timestamp,user: $userEl.attr('alt')});
           }
         });
 
         jQuery.merge(that.events, eventsFromActivity);
         
       })
-      debugger
       // jQuery('.conversation').each(function(i,conversation){
       //   if(conversation.has('.activity')) {
       //     // general event except notes
@@ -145,6 +150,11 @@
       // })
       // });
     },
+    timeLine: function(){
+      return this.events.concat(this.notes).sort(function(a,b){
+        return a.timestamp - b.timestamp
+      });
+    },
     
     fetchData: function() {
       jQuery('#activity_toggle').trigger('click');
@@ -153,7 +163,9 @@
         console.log("activities toggle is called")
         that.activities = that.collectActivities();
         that.filterNotes();
-        that.generateEvents()
+        that.generateEvents();
+        debugger
+        that.timeLine();
       });
       var data = {name: "Jo",agents:["a","b"]}
       return data;

@@ -28,11 +28,15 @@
         this.fetchData();        
     },
     replaceTemplate: function(data){
-      var template = _.template(
-        jQuery( "script.myTmpl" ).html()
-      );
+      var arr = [1]
+      var content =jQuery("#final_template");
+      arr.each(function(a){
+        var template = _.template(jQuery("script#"+a).html());
+        content.append(template(data));
+      })
+      debugger
         
-      jQuery(".reveal .slides").prepend(template(data));
+      jQuery(".reveal .slides").prepend(content.html());
     },
 
     users: {},

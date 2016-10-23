@@ -2076,7 +2076,6 @@
 	 */
 
 	function toggleAutoSlide( override ) {
-
 		if( typeof override === 'boolean' ) {
 			override ? resumeAutoSlide() : pauseAutoSlide();
 		}
@@ -3750,6 +3749,10 @@
 				autoSlideStartTime = Date.now();
 			}
 
+			if(Reveal.isLastSlide()){
+				dispatchEvent( 'lastSlide' );
+			}
+
 			if( autoSlidePlayer ) {
 				autoSlidePlayer.setPlaying( autoSlideTimeout !== -1 );
 			}
@@ -3783,13 +3786,12 @@
 	}
 
 	function resumeAutoSlide() {
-
 		if( autoSlide && autoSlidePaused ) {
 			autoSlidePaused = false;
-			dispatchEvent( 'autoslideresumed' );
+			// dispatchEvent( 'autoslideresumed' );
 			cueAutoSlide();
 		}
-
+		dispatchEvent( 'autoslideresumed' );
 	}
 
 	function navigateLeft() {

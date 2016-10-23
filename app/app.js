@@ -4,15 +4,35 @@
       if(page_type == "ticket") {
         var fbbtn = '<li class="flashback-btn ticket-btns"><a href="#flashback" id="video-click-btn"><button class="btn tooltip">Flashback</button></a></li>';
         jQuery(".collapse-content li:nth-child(1)").prepend(fbbtn);
+        // var audioElement  = document.createElement('audio');
+        // audioElement.setAttribute('id', 'audio-player');
+        // audioElement.setAttribute('src', "https://s3-us-west-2.amazonaws.com/ganguly/Olympics+Medal+Tracker.mp3");
+        var audioBtn = '<audio id="audio-player" src='+this.getmp3('happy1')+'></audio>';
+        jQuery(".collapse-content li:nth-child(1)").prepend(audioBtn);
+        var audioElement = jQuery("#audio-player")[0];
+        audioElement.loop = true;
+        jQuery('#video-click-btn').click(function(){
+          audioElement.play();
+        });
         this.initializeTemplates();
+        this.audioElement = audioElement;
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
           jQuery("#video-click-btn").click(function(){
-        
               Reveal.initialize({
                 controls: false,
-                autoSlide: 2000, //fade/slide/convex/concave/zoom
+                autoSlide: 2000 //fade/slide/convex/concave/zoom
               });
           });
+          Reveal.addEventListener('autoslideresumed', function(e) {
+            jQuery("#audio-player")[0].play();
+          })
+          Reveal.addEventListener('autoslidepaused', function(e) {
+            jQuery("#audio-player")[0].pause();
+          })
+          Reveal.addEventListener('lastSlide', function(e) {
+            jQuery("#audio-player")[0].pause();
+          })
+
           jQuery("#replay-btn").click(function(){
               Reveal.slide(0);
               setTimeout(function(){
@@ -25,10 +45,10 @@
     },
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";
-        this.fetchData(); 
+        this.fetchData();
     },
     addUser: function($userEl) {
-      this.users[($userEl).attr('alt')] = ($userEl).data('src') || "/assets/misc/profile_blank_thumb.jpg"; 
+      this.users[($userEl).attr('alt')] = ($userEl).data('src') || "/assets/misc/profile_blank_thumb.jpg";
       if($userEl.data('src') != undefined && this.users[($userEl).attr('alt')]  == "/assets/misc/profile_blank_thumb.jpg") {
         this.users[($userEl).attr('alt')] = ($userEl).data('src')
       }
@@ -44,12 +64,12 @@
       // id="7" data-slide-name="agent_reply"
       // id="8" data-slide-name="ticket_closed"
       // id="9" data-slide-name="custom_rating"
-      // id="10" data-slide-name="time_remaining"	
-      // id="11" data-slide-name="final_stats"	
+      // id="10" data-slide-name="time_remaining"
+      // id="11" data-slide-name="final_stats"
       // id="12" data-slide-name="status_transitions"
-      // id="13" data-slide-name="status_pending"	
+      // id="13" data-slide-name="status_pending"
       // id="14" data-slide-name="unresolved_start"
-      
+
       var arr = [1,2,4,5,6,7,8,9,10,11];
       var content =jQuery("#final_template");
       arr.each(function(a){
@@ -65,13 +85,15 @@
     notes: [],
     events: [],
 
+    audioElement: null,
+
     collectActivities: function() {
       return jQuery('.conversation.minimized,.conversation.activity')
     },
     getColloborators: function(req,agent){
       var arr = []
       for(var key in this.users) {
-        if(key !="undefined" && key != req && key != agent)  
+        if(key !="undefined" && key != req && key != agent)
           arr.push(key);
       }
       return arr;
@@ -124,7 +146,17 @@
     getRequesterReplies: function() {
       return this.notes.filter(function(note) { return note.type == 'requester_reply'});
     },
-    
+
+    getmp3: function (name) {
+      var audios = { "medal_tracker": "https://s3-us-west-2.amazonaws.com/ganguly/Olympics+Medal+Tracker.mp3",
+      "happy1": "https://s3-us-west-2.amazonaws.com/ganguly/happy1.mp3" ,
+      "happy2": "https://s3-us-west-2.amazonaws.com/ganguly/happy2.mp3",
+        "neutral1": "https://s3-us-west-2.amazonaws.com/ganguly/neutral1.mp3",
+      "neutral2": "https://s3-us-west-2.amazonaws.com/ganguly/neutral2.mp3"
+      }
+      return audios[name];
+    },
+
     
     generateEvents: function() {
       // event schema
@@ -214,7 +246,7 @@
         that.generateEvents();
         that.timeLine();
         jQuery.map(jQuery('.conversation .avatar-wrap .preview_pic img.thumb'), 
-            function(userEl) { 
+            function(userEl) {
               that.addUser(jQuery(userEl));
             } 
         );
@@ -233,6 +265,8 @@
         }
         that.replaceTemplate(data)
       });
+
+
       return data;
     }
   }

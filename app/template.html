@@ -405,11 +405,14 @@
 		<div class="s-12">
 			
 			<div class="s-13-con">
-					<div class="fragment tick-space" data-autoslide="1000">
-						<span>
-							TODO
-						</span>
-					</div>
+        <% _.each( data.events, function( event,i ){ %>
+          <div class="fragment tick-space" data-autoslide="1000">
+            <span>
+              <%-event.eventType%> set to <%-event.eventData%>
+            </span>
+          </div>
+        <% }); %>
+
 					<div class="fragment tick-space" data-autoslide="1000">
 						<span>
 							Reopen	

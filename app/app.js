@@ -87,6 +87,11 @@
       // id="13" data-slide-name="status_transitions"
 
       var framesSelected = [1,2,4,5,6,7,8,9,10,11,12,13];
+      
+      if(data.is_unresolved){
+        framesSelected = [12,1,2,4,5,6,13,8];
+      }
+      
       var content =jQuery("#final_template");
       framesSelected.each(function(a){
         var template = _.template(jQuery("script#"+a).html());
@@ -230,6 +235,12 @@
         return a.timestamp - b.timestamp
       });
     },
+    getLatestEvents: function(){
+      return this.events.reverse().filter(function(event) {
+        return event.eventType.strip().toLowerCase() == "priority" || event.eventType.strip().toLowerCase() == "status"
+      }).slice(0,7);
+      
+    },
     getCustomerRating: function(){
       return Math.floor(Math.random() * 3) + 3  ;
     },    
@@ -265,6 +276,7 @@
           is_customer_responded: that.getRequesterReplies(that.notes).length > 0,
           customer_rating: that.getCustomerRating(),
           note_count: that.notes.length,
+          events: that.getLatestEvents()
 
         }
         data.is_unresolved = (data.ticket.status_name != "Resolved" && data.ticket.status_name != "Closed");
@@ -278,7 +290,6 @@
           data.time_elapsed = "";
           console.error('dueby parse err' + e);
         }
-        debugger
         that.replaceTemplate(data)
       });
 

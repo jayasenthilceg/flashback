@@ -137,35 +137,37 @@
 </script>
 	<!-- slide 2 ********************************* -->
 <script id="2" type="text/template">
-	<section data-background="#f9e400" data-transition="fade-in slide-out" data-background-transition="slide-in" style="background-color:#f9e400;">
-			<div class="t-left slide-2-con-1" data-autoslide="10">
-				<div class="d-align-right">
-					<img src='<%-data.requester_image%>' alt="replay" class="animated fadeInDown agent-img-size">
+	<% if ( data.agent_name != "No Agent" ){ %>                                            
+		<section data-background="#f9e400" data-transition="fade-in slide-out" data-background-transition="slide-in" style="background-color:#f9e400;">
+				<div class="t-left slide-2-con-1" data-autoslide="10">
+					<div class="d-align-right">
+						<img src='<%-data.requester_image%>' alt="replay" class="animated fadeInDown agent-img-size">
+					</div>
+					<div class="clr-light-blue c-font-large">
+						Created at OCT 2016
+					</div>
+					<div class="font-extra-large clr-pink">
+						<%-data.ticket.subject%>
+					</div>
 				</div>
-				<div class="clr-light-blue c-font-large">
-					Created at OCT 2016
+				<div class="fragment slide-2-con-2" data-autoslide="50" >
+					<div class="fragment d-align-left image-fix" data-autoslide="1000" data-transition="fade-in">
+						<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
+					</div>
+					<div class="fragment clr-blue-fs font-extra-large animated fadeInRight">
+						Ticket assigned to
+					</div>
+					<div class="fragment c-font-48 clr-light-grey animated fadeInRight" data-autoslide="1000">
+						<%-data.agent_name%>
+					</div>	
+					<div class="fragment">
+						<img src='<%-data.agent_image%>' alt="replay" class="animated fadeInDown mt-0 agent-img-size"> 		
+					</div>
 				</div>
-				<div class="font-extra-large clr-pink">
-					<%-data.ticket.subject%>
-				</div>
-			</div>
-			<div class="fragment slide-2-con-2" data-autoslide="50" >
-				<div class="fragment d-align-left image-fix" data-autoslide="1000" data-transition="fade-in">
-					<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
-				</div>
-				<div class="fragment clr-blue-fs font-extra-large animated fadeInRight">
-					Ticket assigned to
-				</div>
-				<div class="fragment c-font-48 clr-light-grey animated fadeInRight" data-autoslide="1000">
-					<%-data.agent_name%>
-				</div>	
-				<div class="fragment">
-					<img src='<%-data.agent_image%>' alt="replay" class="animated fadeInDown mt-0 agent-img-size"> 		
-				</div>
-			</div>
 
 
-	</section>
+		</section>
+	<% } %>
 </script>
 
 	<!-- slide 3 ********************************* -->

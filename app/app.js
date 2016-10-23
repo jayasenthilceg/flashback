@@ -28,7 +28,7 @@
         this.fetchData();        
     },
     replaceTemplate: function(data){
-      var arr = [1]
+      var arr = [1,2]
       var content =jQuery("#final_template");
       arr.each(function(a){
         var template = _.template(jQuery("script#"+a).html());

@@ -123,8 +123,8 @@
 	<section data-background="#d51864" data-transition="zoom" data-background-transition="slide-out" style="background-color:#d51864;">
 		<div class="s-4-pos">
 			<div class="s-4-sec text-left" data-autoslide="500">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-				<div class="agent-name"><%-data.agent_name%></div>
+				<img src="<%-data.requester_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
+				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 
 			<div class="s-4-sec fragment" data-autoslide="2000">
@@ -144,8 +144,8 @@
 		
 		<div class="s-4-pos">
 			<div class="s-4-sec text-left " data-autoslide="100" data-transition="fade-in">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-				<div class="agent-name"><%-data.agent_name%></div>
+				<img src="<%-data.requester_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
+				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 
 			<div class="s-4-sec fragment" data-autoslide="3000">
@@ -167,7 +167,7 @@
 		<div class="s-6-top">
 			<div class="s-6-sec-small" data-autoslide="100">
 				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-img-size">
-				<div class="agent-name s-6-font-color"><%-data.agent_name%></div>
+				<div class="agent-name s-6-font-color"><%-data.requester_name%></div>
 			</div>
 			<div class="fragment s-6-sec text-right" data-autoslide="1000">
 				<img src="{{ 'Ticket.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 s-6-ticket-img">
@@ -177,31 +177,20 @@
 				<div class="agent-name s-6-font-color "><%-data.agent_name%></div>
 			</div>
 		</div>
-
+ 
 		<div class="s-6-bottom">
 			<div class="fragment s-6-font-color " data-autoslide="1000">
-				3 More agents involed in this ticket
+				<%-data.colloborators_length%> More agents involed in this ticket
 			</div>
-			<div class="fragment s-6-extra-agent" data-autoslide="1000">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 s-6-extra-agent-img">
-				<span class="s-6-extra-agent-name">
-					Landon Garza
-				</span>
-			</div>
-			<div class="fragment s-6-extra-agent" data-autoslide="1000">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 s-6-extra-agent-img">
-				<span class="s-6-extra-agent-name">
-					Landon Garza
-				</span>
-			</div>
-			<div class="fragment s-6-extra-agent" data-autoslide="1000">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 s-6-extra-agent-img">
-				<span class="s-6-extra-agent-name">
-					Landon Garza
-				</span>
-			</div>
-		</div>
-		
+			<% _.each( data.colloborators, function( agent ){ %>
+				<div class="fragment s-6-extra-agent">
+					<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 s-6-extra-agent-img">
+					<span class="s-6-extra-agent-name">
+						<%-agent%>
+					</span>
+				</div>
+			<% }); %>
+		</div>		
 	</section>
 </script>
 
@@ -214,11 +203,11 @@
 			<div class="s-4-sec text-left " data-autoslide="100" data-transition="fade-in">
 				<div class="addtional-agent">
 					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add one">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add two">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add three">
+					<% _.each( data.colloborators, function( agent,i ){ %>
+						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
+					<% }); %>
 				</div>
-				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%> + <span class="agent-count"> 3 </span> </div>
+				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div>
 			</div>
 
 			<div class="s-4-sec fragment" data-autoslide="1000">
@@ -227,7 +216,7 @@
 
 			<div class="s-4-sec fragment text-right float-right-sec" data-autoslide="1000">
 				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
-				<div class="agent-name"><%-data.agent_name%></div>
+				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 		</div>
 
@@ -260,16 +249,16 @@
 			<div class="s-4-sec fragment text-left " data-autoslide="1000" data-transition="fade-in">
 				<div class="addtional-agent">
 					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add one">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add two">
-					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-add three">
+					<% _.each( data.colloborators, function( agent,i ){ %>
+						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
+					<% }); %>
 				</div>
-				<div class="agent-name"><%-data.agent_name%> + <span class="agent-count"> 3 </span> </div>
+				<div class="agent-name"> <%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div>
 			</div>
 
 			<div class="s-4-sec fragment text-right" data-autoslide="1000">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
-				<div class="agent-name"><%-data.agent_name%></div>
+				<img src="<%-data.requester_image%>" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
+				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 
 		</div>
@@ -303,37 +292,14 @@
 			</div>
 			
 			<div class="s-11-right">
-				<div class="fragment tick-space" data-autoslide="1000">
-					<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
-					<span>
-						3M Company
-					</span>
-				</div>
-				<div class="fragment tick-space" data-autoslide="1000">
-					<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
-					<span>
-						Alaska Air Group, Inc.
-					</span>
-				</div>
-				<div class="fragment tick-space" data-autoslide="1000">
-					<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
-					<span>
-						Honda
-					</span>
-				</div>
-				<div class="fragment tick-space" data-autoslide="1000">
-					<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
-					<span>
-						Cisco
-					</span>
-				</div>
-				<div class="fragment tick-space" data-autoslide="1000">
-					<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
-					<span>
-						Flipkart
-					</span>
-				</div>
-
+				<% _.each( data.success_params, function( success ){ %>
+					<div class="fragment tick-space" data-autoslide="1000">
+						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+						<span>
+							<%-success%>
+						</span>
+					</div>
+				<% }); %>
 			</div>
 
 		</div>

@@ -28,7 +28,7 @@
         this.fetchData();        
     },
     replaceTemplate: function(data){
-      var arr = [1,2,3,4,5,6,7,8,9,10,11]
+      var arr = [1,2,3,4,5,6,7,8,9,10,11];
       var content =jQuery("#final_template");
       arr.each(function(a){
         var template = _.template(jQuery("script#"+a).html());
@@ -47,10 +47,10 @@
     collectActivities: function() {
       return jQuery('.conversation.minimized,.conversation.activity')
     },
-    getColloborators: function(req){
+    getColloborators: function(req,agent){
       var arr = []
       for(var key in this.users) {
-        if(key !="undefined" && key != req)  
+        if(key !="undefined" && key != req && key != agent)  
           arr.push(key);
       }
       return arr;
@@ -193,8 +193,10 @@
           agent_image: that.users[ticket.responder_name] || "/assets/misc/profile_blank_thumb.jpg",
           requester_image: that.users[ticket.requester_name] || "/assets/misc/profile_blank_thumb.jpg",
           ticket: ticket,
-          colloborators: that.getColloborators(),
-          image_mapping: that.users
+          colloborators: that.getColloborators(ticket.requester_name,ticket.responder_name).slice(0,3),
+          colloborators_length:that.getColloborators(ticket.requester_name,ticket.responder_name).length,
+          image_mapping: that.users,
+          success_params: ["First Response within SLA","Resolved Within SLA","Customer Happy","Kumutha happy"]
 
         }
         // debugger

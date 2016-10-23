@@ -28,6 +28,19 @@
         this.fetchData();        
     },
     replaceTemplate: function(data){
+      // slide numbers vs names
+      // id="1" data-slide-name="ticket_creation"
+      // id="2" data-slide-name="agent_assignment"
+      // id="3" data-slide-name="timer_running"
+      // id="4" data-slide-name="first_response"
+      // id="5" data-slide-name="customer_reply"
+      // id="6" data-slide-name="agent_collaboration"
+      // id="7" data-slide-name="agent_reply"
+      // id="8" data-slide-name="ticket_closed"
+      // id="9" data-slide-name="custom_rating"
+      // id="10" data-slide-name="time_remaining"	
+      // id="11" data-slide-name="final_stats"	
+      
       var arr = [1,2,4,5,6,7,8,9,10,11];
       var content =jQuery("#final_template");
       arr.each(function(a){

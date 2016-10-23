@@ -302,11 +302,12 @@
 				<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 zoom-transition">
 			</div>
 			<div class="fragment" data-autoslide="1000">
+        <% _.times( data.customer_rating, function(){ %>
 				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+        <% }); %>
+        <% _.times( 5 - data.customer_rating, function(){ %>
 				<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-				<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+				<% }); %>
 			</div>
 
 		</div>
@@ -323,12 +324,12 @@
 					<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-11">
 				</div>
 				<div class="fragment" data-autoslide="1000">
-					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-					<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-					<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
-					
+          <% _.times( data.customer_rating, function(){ %>
+  				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+          <% }); %>
+          <% _.times( 5 - data.customer_rating, function(){ %>
+  				<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+  				<% }); %>					
 				</div>
 			</div>
 			

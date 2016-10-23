@@ -70,7 +70,7 @@
       // id="13" data-slide-name="status_pending"
       // id="14" data-slide-name="unresolved_start"
 
-      var framesSelected = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+      var framesSelected = [1,2,4,5,6,7,8,9,10,11,12,13];
       var content =jQuery("#final_template");
       framesSelected.each(function(a){
         var template = _.template(jQuery("script#"+a).html());

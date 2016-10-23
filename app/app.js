@@ -52,9 +52,9 @@
       playSong: function() {
           var status_name = domHelper.ticket.getTicketInfo().helpdesk_ticket.status_name;
           var is_resolved = (status_name == "Resolved" || status_name == "Closed");
-          var happySongs = ["happy1", "happy2"];
-          var neutralSongs = ["neutral1", "neutral2"];
-          var randomValue = Math.floor(Math.random() * 10) % 2;
+          var happySongs = ["happy1", "happy2", "happy3", "happy4"];
+          var neutralSongs = ["neutral1", "neutral2", "neutral3", "neutral4"];
+          var randomValue = Math.floor(Math.random() * 10) % 4;
             if(is_resolved) {
                 mp3Name = this.getmp3(happySongs[randomValue]);
             } else {
@@ -170,10 +170,14 @@
 
     getmp3: function (name) {
       var audios = { "medal_tracker": "https://s3-us-west-2.amazonaws.com/ganguly/Olympics+Medal+Tracker.mp3",
-      "happy1": "https://s3-us-west-2.amazonaws.com/ganguly/happy1.mp3" ,
+      "happy1": "https://s3-us-west-2.amazonaws.com/ganguly/happy1.mp3",
       "happy2": "https://s3-us-west-2.amazonaws.com/ganguly/happy2.mp3",
-        "neutral1": "https://s3-us-west-2.amazonaws.com/ganguly/neutral1.mp3",
-      "neutral2": "https://s3-us-west-2.amazonaws.com/ganguly/neutral2.mp3"
+      "happy3": "https://s3-us-west-2.amazonaws.com/ganguly/happy3.mp3",
+      "happy4": "https://s3-us-west-2.amazonaws.com/ganguly/happy4.mp3",
+      "neutral1": "https://s3-us-west-2.amazonaws.com/ganguly/neutral1.mp3",
+      "neutral2": "https://s3-us-west-2.amazonaws.com/ganguly/neutral2.mp3",
+      "neutral3": "https://s3-us-west-2.amazonaws.com/ganguly/neutral3.mp3",
+      "neutral4": "https://s3-us-west-2.amazonaws.com/ganguly/neutral4.mp3"
       }
       return audios[name];
     },

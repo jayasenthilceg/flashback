@@ -66,10 +66,10 @@
 				<div class="fragment d-align-left image-fix" data-autoslide="1000" data-transition="fade-in">
 					<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
 				</div>
-				<div class="fragment c-s2-req font-extra-large animated fadeInRight" ata-autoslide="1000">
+				<div class="fragment c-s2-req font-extra-large animated fadeInRight" data-autoslide="1000">
 					Ticket was assigned to
 				</div>
-				<div class="fragment c-font-48 c-s2-name animated fadeInRight" ata-autoslide="1000">
+				<div class="fragment c-font-48 c-s2-name animated fadeInRight" data-autoslide="1000">
 					<%-data.agent_name%>
 				</div>	
 				<div class="fragment" data-autoslide="1000">
@@ -132,7 +132,7 @@
 				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 		</div>
-		<div class="slide-des-text fragment" data-autoslide="1000">
+		<div class="slide-des-text">
 			Agent responded <%- data.fr_dueby_words %>
 		</div>
 	</section>
@@ -158,7 +158,9 @@
 				<div class="agent-name"><%-data.agent_name%></div>
 			</div>
 		</div>
-
+		<div class="slide-des-text">
+			Requester comes back
+		</div>
 	</section>
   <%}%>
 </script>
@@ -230,6 +232,13 @@
 				<div class="agent-name"><%-data.requester_name%></div>
 			</div>
 		</div>
+		<div class="slide-des-text">
+			<% if (data.collaborators_length) { %>
+           + <span class="agent-count"> <%-data.collaborators_length%> Agents collaborated </span>
+       <% } else { %>
+          <span class="agent-count"></span>
+        <% } %>
+		</div>
 
 	</section>
   <% } %>
@@ -294,6 +303,9 @@
 
 		</div>
     <% } %>
+    <div class="slide-des-text">
+			Problem is resolved
+		</div>
 	</section>
 </script>
 	<!-- slide 10 ********************************* -->				

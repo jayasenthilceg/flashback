@@ -53,7 +53,7 @@
 					<img src="{{ 'time-efficiency.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-img-size">
 				</div>
 				<div class="font-extra-large c-s2-h mt-50">
-					Timer Started
+					Clock started ticking
 				</div>
 			</div>
 
@@ -77,6 +77,7 @@
 	<!-- slide 3 ********************************* -->
 
 <script type="text/template" id="3" data-slide-name="timer_running">
+  <!-- IGNORE THIS SLIDE -->
 	<section data-background="#000000" data-transition="slide" data-background-transition="slide-out" style="background-color:#000000;">
 
 		<div class="t-left slide-2-con-1" data-autoslide="10">
@@ -109,6 +110,7 @@
 
 <!-- slide 4 ********************************* -->
 <script type="text/template" id="4" data-slide-name="first_response">
+  <% if (data.is_agent_responded) { %>
 	<section data-background="#d51864" data-transition="zoom" data-background-transition="slide-out" style="background-color:#d51864;">
 		<div class="s-4-pos">
 			<div class="s-4-sec text-left" data-autoslide="500">
@@ -126,9 +128,11 @@
 			</div>
 		</div>
 	</section>
+  <%}%>
 </script>
 <!-- slide 5 ********************************* -->	
 <script type="text/template" id="5" data-slide-name="customer_reply">
+  <% if (data.is_customer_responded) { %>
 	<section data-background-color="#00eabc" data-transition="concave" data-background-transition="concave" style="background-color:#00eabc;">
 		
 		<div class="s-4-pos">
@@ -148,9 +152,11 @@
 		</div>
 
 	</section>
+  <%}%>
 </script>
 	<!-- slide 6 ********************************* -->	
 <script type="text/template" id="6" data-slide-name="agent_collaboration">
+  <% if (data.colloborators_length) { %>
 	<section style="background-color:#ffffff;" data-transition="zoom-in" data-background-transition="zoom-in" data-background-color="#ffffff">
 
 		<div class="s-6-top">
@@ -181,11 +187,13 @@
 			<% }); %>
 		</div>		
 	</section>
+  <%}%>
 </script>
 
 
 	<!-- slide 7 ********************************* -->	
 <script type="text/template" id = "7" data-slide-name="agent_reply">
+  <% if (data.is_agent_responded) { %>
 	<section style="background-color:#0000ff;" data-transition="zoom-out" data-background-transition="zoom-out" data-background-color="#0000ff">
 		
 		<div class="s-4-pos s-7">
@@ -196,7 +204,13 @@
 						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
 					<% }); %>
 				</div>
-				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div>
+				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%>
+        <% if (data.colloborators_length) { %>
+           + <span class="agent-count"> <%-data.colloborators_length%> </span>
+        <% } else { %>
+          <span class="agent-count"></span>
+        <% } %>
+        </div>
 			</div>
 
 			<div class="s-4-sec fragment" data-autoslide="2000">
@@ -210,26 +224,39 @@
 		</div>
 
 	</section>
+  <% } %>
 </script>
 	<!-- slide 8 ********************************* -->	
 <script type="text/template" id = "8" data-slide-name="ticket_closed">
+  <% if(!data.ticket.isescalated) { %>
 	<section style="background-color:#000000;" data-transition="convex" data-background-transition="convex" data-background-color="#000000">
 		<div class="s-8-pos color-white">
-			<div class="fragment" data-autoslide="1000">
-				<img src="{{ 'Illustration.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
-			</div>
-			<div class="fragment" data-autoslide="1000">
-				Great!
-			</div>
-			<div class="fragment" data-autoslide="1000">
-				Resolved with in a SLA
-			</div>
+      <% if (data.ticket.status_name == "Resolved" || data.ticket.status_name == "Closed") { %>
+  			<div class="fragment" data-autoslide="1000">
+  				<img src="{{ 'Illustration.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
+  			</div>
+  			<div class="fragment" data-autoslide="1000">
+  				Great!
+  			</div>
+  			<div class="fragment" data-autoslide="1000">
+  				Resolved within SLA
+  			</div>
+      <% } else { %>
+        <div class="fragment" data-autoslide="1000">
+  				<img src="{{ 'Illustration.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
+  			</div>
+  			<div class="fragment" data-autoslide="1000">
+  				You still got time!
+  			</div>
+      <% } %>
 
 		</div>
 	</section>
+  <% } %>
 </script>
 	<!-- slide 9 ********************************* -->
-<script type="text/template" id = "9" data-slide-name="custom_rating">
+<script type="text/template" id = "9" data-slide-name="customer_rating">
+  <% if (data.ticket.status_name == "Resolved" || data.ticket.status_name == "Closed") { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-9-pos">
 			<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 happy-img ">
@@ -242,7 +269,14 @@
 						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
 					<% }); %>
 				</div>
-				<div class="agent-name"> <%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div>
+				<!-- <div class="agent-name"> <%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div> -->
+        <div class="agent-name"> <%-data.agent_name%> 
+        <% if (data.colloborators_length) { %>
+           + <span class="agent-count"> <%-data.colloborators_length%> </span>
+        <% } else { %>
+          <span class="agent-count"></span>
+        <% } %>
+         </div>
 			</div>
 
 			<div class="s-4-sec fragment text-right" data-autoslide="1000">
@@ -251,10 +285,11 @@
 			</div>
 
 		</div>
+    <% } %>
 	</section>
 </script>
 	<!-- slide 10 ********************************* -->				
-<script type="text/template" id = "10" data-slide-name="time_remaining">	
+<script type="text/template" id = "10" data-slide-name="stars">	
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-8-pos color-white">
 			<div class="fragment" data-autoslide="2000">

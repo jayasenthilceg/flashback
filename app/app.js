@@ -73,7 +73,7 @@
         that.notes.push(note);
       });
       
-      console.log('filtered notes count : ', that.notes.length);
+      console.log('filtered notes count: ', that.notes.length);
       
     },
 

@@ -46,6 +46,9 @@
       // id="9" data-slide-name="custom_rating"
       // id="10" data-slide-name="time_remaining"	
       // id="11" data-slide-name="final_stats"	
+      // id="12" data-slide-name="status_transitions"
+      // id="13" data-slide-name="status_pending"	
+      // id="14" data-slide-name="unresolved_start"
       
       var arr = [1,2,4,5,6,7,8,9,10,11];
       var content =jQuery("#final_template");

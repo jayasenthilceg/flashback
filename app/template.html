@@ -53,6 +53,7 @@
 </script>
 	<!-- slide 2 ********************************* -->
 <script type="text/template" id="2" data-slide-name="agent_assignment">
+  <% if (data.agent_name != "No Agent"){ %>
 	<section data-background="#feda01" data-transition="convex" data-background-transition="fade" style="background-color:#feda01;">
 			
 			<div class="t-left slide-2-con-1 animated fadeInDown" data-autoslide="10">
@@ -78,9 +79,8 @@
 					<img src="<%-data.agent_image%>" alt="replay" class="animated fadeInDown mt-0 agent-img-size"> 		
 				</div>
 			</div>
-
-
 	</section>
+  <%}%>
 </script>
 	<!-- slide 3 ********************************* -->
 

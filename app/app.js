@@ -25,14 +25,12 @@
     },
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";
-        this.fetchData();
-    },
-    replaceTemplate: function(data){
-      var template = _.template(
-        jQuery( "script.myTmpl" ).html()
-      );
+        var template = _.template(
+            jQuery( "script.myTmpl" ).html()
+        );
         
-      jQuery(".reveal .slides").prepend(template(data));
+        var data = this.fetchData(this);
+        jQuery(".reveal .slides").append(template(data));
     },
 
     users: {},
@@ -43,16 +41,7 @@
     collectActivities: function() {
       return jQuery('.conversation.minimized,.conversation.activity')
     },
-    getColloborators: function(req){
-      var arr = []
-      for(var key in this.users) {
-        if(key !="undefined" && key != req)
-          arr.push(key);
-      }
-      return arr;
-      // return this.u
-    },
-
+    
     filterNotes: function() {
       // note schema
       // { 
@@ -84,7 +73,7 @@
         that.notes.push(note);
       });
       
-      console.log('filtered notes count : ', that.notes.length);
+      console.log('filtered notes count: ', that.notes.length);
       
     },
 
@@ -175,33 +164,10 @@
         that.activities = that.collectActivities();
         that.filterNotes();
         that.generateEvents();
-        that.timeLine();
-        jQuery.map(jQuery('.conversation .avatar-wrap .preview_pic img.thumb'),
-            function(el) {
-              // debugger
-              that.users[jQuery(el).attr('alt')] = jQuery(el).data('src');
-            }
-        );
-        var ticket = domHelper.ticket.getTicketInfo().helpdesk_ticket;
-        var data = {
-          requester_name: ticket.requester_name,
-          agent_name: ticket.responder_name,
-          agent_image: that.users[ticket.responder_name] || "/assets/misc/profile_blank_thumb.jpg",
-          requester_image: that.users[ticket.requester_name] || "/assets/misc/profile_blank_thumb.jpg",
-          ticket: ticket,
-          colloborators: that.getColloborators(),
-          image_mapping: that.users
-
-        }
-        debugger
-        that.replaceTemplate(data)
         // debugger
+        that.timeLine();
       });
-
-      // jQuery(document).live('ready',function(event){
-      //   debugger
-      // });
-
+      var data = {name: "Jo",agents:["a","b"]}
       return data;
     }
   }

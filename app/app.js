@@ -25,7 +25,13 @@
     },
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";
-        this.fetchData();        
+        this.fetchData(); 
+    },
+    addUser: function($userEl) {
+      this.users[($userEl).attr('alt')] = ($userEl).data('src') || "/assets/misc/profile_blank_thumb.jpg"; 
+      if($userEl.data('src') != undefined && this.users[($userEl).attr('alt')]  == "/assets/misc/profile_blank_thumb.jpg") {
+        this.users[($userEl).attr('alt')] = ($userEl).data('src')
+      }
     },
     replaceTemplate: function(data){
       // slide numbers vs names
@@ -47,7 +53,6 @@
         var template = _.template(jQuery("script#"+a).html());
         content.append(template(data));
       })
-      // debugger
         
       jQuery(".reveal .slides").prepend(content.html());
     },
@@ -94,7 +99,7 @@
           note.type = 'public';
         }
         var $userEl = jQuery($noteEl.find('.avatar-wrap .preview_pic img.thumb')); 
-        that.users[$userEl.attr('alt')] = $userEl.attr('src');
+        that.addUser($userEl);
         note.user = $userEl.attr('alt');
         note.id = $noteEl.attr('id');
         
@@ -137,9 +142,7 @@
         var $activity = jQuery(activity);
         var timestamp = $activity.data('timestamp');
         var $userEl = $activity.find('.avatar-wrap .preview_pic img.thumb'); 
-        that.users[$userEl.attr('alt')] = $userEl.attr('src');        
-        // debugger
-        // debugger
+        that.addUser($userEl);
         var eventsFromActivity = [];
         ([].concat.apply([],$activity
           .find('.commentbox .details').text().strip().split('\\n')
@@ -208,9 +211,8 @@
         that.generateEvents();
         that.timeLine();
         jQuery.map(jQuery('.conversation .avatar-wrap .preview_pic img.thumb'), 
-            function(el) { 
-              // debugger
-              that.users[jQuery(el).attr('alt')] = jQuery(el).data('src'); 
+            function(userEl) { 
+              that.addUser(jQuery(userEl));
             } 
         );
         var ticket = domHelper.ticket.getTicketInfo().helpdesk_ticket;
@@ -226,15 +228,8 @@
           success_params: that.get_success_params(ticket)
 
         }
-        // debugger
         that.replaceTemplate(data)
-        // debugger
       });
-
-      // jQuery(document).live('ready',function(event){
-      //   debugger
-      // });
-
       return data;
     }
   }

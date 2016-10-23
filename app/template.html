@@ -37,7 +37,7 @@
 				<img src="{{ 'twitter_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
 			</div>
 			<div class="fragment clr-light-blue c-font-large animated fadeInLeft" data-autoslide="1000">
-				Created <%-data.time_elapsed%>
+				Reported <%-data.time_elapsed%>
 			</div>
 			<div class="fragment font-extra-large clr-pink animated fadeInLeft" data-autoslide="1000">
 				<%-data.ticket.subject%>
@@ -133,7 +133,7 @@
 			</div>
 		</div>
 		<div class="slide-des-text fragment" data-autoslide="1000">
-			Agent is replying to requester.
+			Agent responded <%- data.fr_dueby_words %>
 		</div>
 	</section>
   <%}%>

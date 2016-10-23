@@ -37,7 +37,7 @@
 				<img src="{{ 'twitter_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
 			</div>
 			<div class="fragment clr-light-blue c-font-large animated fadeInLeft" data-autoslide="1000">
-				Created at OCT 2016
+				Created <%-data.time_elapsed%>
 			</div>
 			<div class="fragment font-extra-large clr-pink animated fadeInLeft" data-autoslide="1000">
 				<%-data.ticket.subject%>
@@ -67,7 +67,7 @@
 					<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
 				</div>
 				<div class="fragment c-s2-req font-extra-large animated fadeInRight" ata-autoslide="1000">
-					Ticket assigned to
+					Ticket was assigned to
 				</div>
 				<div class="fragment c-font-48 c-s2-name animated fadeInRight" ata-autoslide="1000">
 					<%-data.agent_name%>
@@ -90,7 +90,7 @@
 				<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-img-size"/>
 			</div>
 			<div class="fragment c-s2-name c-font-large" data-autoslide="500">
-				Created at OCT 2016
+				Created <%-data.time_elapsed%>
 			</div>
 			<div class="fragment font-extra-large c-white" data-autoslide="500">
 				<%-data.ticket.subject%>
@@ -103,7 +103,7 @@
 					<img src="<%-data.agent_image%>" alt="replay" class="animated fadeInDown mt-0 agent-img-size">
 				</div>
 				<div class="fragment c-white font-extra-large animated fadeInRight" data-autoslide="1000">
-					Ticket assigned to
+					Ticket was assigned to
 				</div>
 				<div class="fragment c-font-48 c-s2-name animated fadeInRight" data-autoslide="1000">
 					<%-data.agent_name%>
@@ -161,7 +161,7 @@
 </script>
 	<!-- slide 6 ********************************* -->	
 <script type="text/template" id="6" data-slide-name="agent_collaboration">
-  <% if (data.colloborators_length) { %>
+  <% if (data.collaborators_length) { %>
 	<section style="background-color:#ffffff;" data-transition="zoom-in" data-background-transition="zoom-in" data-background-color="#ffffff">
 
 		<div class="s-6-top">
@@ -180,9 +180,9 @@
  
 		<div class="s-6-bottom">
 			<div class="fragment s-6-font-color " data-autoslide="1000">
-				<%-data.colloborators_length%> More agents involed in this ticket
+				<%-data.collaborators_length%> More agents involed in this ticket
 			</div>
-			<% _.each( data.colloborators, function( agent ){ %>
+			<% _.each( data.collaborators, function( agent ){ %>
 				<div class="fragment s-6-extra-agent">
 					<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 s-6-extra-agent-img">
 					<span class="s-6-extra-agent-name">
@@ -205,13 +205,13 @@
 			<div class="s-4-sec text-left " data-autoslide="100" data-transition="fade-in">
 				<div class="addtional-agent">
 					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-					<% _.each( data.colloborators, function( agent,i ){ %>
+					<% _.each( data.collaborators, function( agent,i ){ %>
 						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
 					<% }); %>
 				</div>
 				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%>
-        <% if (data.colloborators_length) { %>
-           + <span class="agent-count"> <%-data.colloborators_length%> </span>
+        <% if (data.collaborators_length) { %>
+           + <span class="agent-count"> <%-data.collaborators_length%> </span>
         <% } else { %>
           <span class="agent-count"></span>
         <% } %>
@@ -236,7 +236,7 @@
   <% if(!data.ticket.isescalated) { %>
 	<section style="background-color:#000000;" data-transition="slide-in" data-background-transition="slide-in" data-background-color="#000000">
 		<div class="s-8-pos color-white">
-      <% if (data.ticket.status_name == "Resolved" || data.ticket.status_name == "Closed") { %>
+      <% if (!data.is_unresolved) { %>
   			<div class="fragment" data-autoslide="1000">
   				<img src="{{ 'Illustration.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
   			</div>
@@ -261,7 +261,7 @@
 </script>
 	<!-- slide 9 ********************************* -->
 <script type="text/template" id = "9" data-slide-name="customer_rating">
-  <% if (data.ticket.status_name == "Resolved" || data.ticket.status_name == "Closed") { %>
+  <% if (!data.is_unresolved) { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-9-pos">
 			<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 happy-img ">
@@ -270,14 +270,14 @@
 			<div class="s-4-sec fragment text-left " data-autoslide="1000" data-transition="fade-in">
 				<div class="addtional-agent">
 					<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 req-pos agent-img-size">
-					<% _.each( data.colloborators, function( agent,i ){ %>
+					<% _.each( data.collaborators, function( agent,i ){ %>
 						<img src="<%-data.image_mapping[agent]%>" alt="" class="animated fadeInDown mt-0 req-add additional-agent<%-i%>">
 					<% }); %>
 				</div>
-				<!-- <div class="agent-name"> <%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div> -->
+				<!-- <div class="agent-name"> <%-data.agent_name%> + <span class="agent-count"> <%-data.collaborators_length%> </span> </div> -->
         <div class="agent-name"> <%-data.agent_name%> 
-        <% if (data.colloborators_length) { %>
-           + <span class="agent-count"> <%-data.colloborators_length%> </span>
+        <% if (data.collaborators_length) { %>
+           + <span class="agent-count"> <%-data.collaborators_length%> </span>
         <% } else { %>
           <span class="agent-count"></span>
         <% } %>
@@ -295,6 +295,7 @@
 </script>
 	<!-- slide 10 ********************************* -->				
 <script type="text/template" id = "10" data-slide-name="stars">	
+  <% if (!data.is_unresolved) { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-8-pos color-white">
 			<div class="fragment" data-autoslide="2000">
@@ -310,9 +311,11 @@
 
 		</div>
 	</section>
+  <% } %>
 </script>
 	<!-- slide 11 ********************************* -->
 <script type="text/template" id = "11" data-slide-name="final_stats">	
+  <% if (!data.is_unresolved) { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-11">
 			<div class="s-11-left text-right">
@@ -342,9 +345,11 @@
 
 		</div>
 	</section>
+  <% } %>
 </script>
 <!-- slide 12 ********************************* -->
-<script type="text/template" id = "12">	
+<script type="text/template" id = "12" data-slide-name="unresolved_start">
+  <% if (data.is_unresolved) { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-12">
 			
@@ -352,35 +357,53 @@
 					<div class="fragment tick-space" data-autoslide="1000">
 						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
 						<span>
-							Tesla
+							Ticket was created <%-data.time_elapsed%>
 						</span>
 					</div>
+          <div class="fragment tick-space" data-autoslide="1000">
+						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+						<span>
+							First response due <%-data.fr_dueby_words%>
+						</span>
+					</div>
+          <div class="fragment tick-space" data-autoslide="1000">
+            <img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+            <span>
+              Resolution due <%-data.resolution_dueby_words%>
+            </span>
+          </div>
+          <% if (data.note_count > 0) { %>
 					<div class="fragment tick-space" data-autoslide="1000">
 						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
 						<span>
-							Solar City	
+							 <%-data.note_count%> notes sent &amp; received
 						</span>
 					</div>
+          <% } %>
+          <% if (data.collaborators_length > 0) { %>
 					<div class="fragment tick-space" data-autoslide="1000">
 						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
 						<span>
-							Paypal
+							<%-data.collaborators_length%> collaborators involved
 						</span>
 					</div>
+          <% } %>
 			</div>
 
 		</div>
 	</section>
+  <% } %>
 </script>
 
-<script type="text/template" id = "13">	
+<script type="text/template" id = "13" data-slide-name="status_transitions">	
+  <% if (data.is_unresolved) { %>
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-12">
 			
 			<div class="s-13-con">
 					<div class="fragment tick-space" data-autoslide="1000">
 						<span>
-							Solved
+							TODO
 						</span>
 					</div>
 					<div class="fragment tick-space" data-autoslide="1000">
@@ -397,6 +420,7 @@
 
 		</div>
 	</section>
+  <% } %>
 </script>
 
 

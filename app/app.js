@@ -66,9 +66,8 @@
       // id="9" data-slide-name="customer_rating"
       // id="10" data-slide-name="stars"	
       // id="11" data-slide-name="final_stats"	
-      // id="12" data-slide-name="status_transitions"
-      // id="13" data-slide-name="status_pending"
-      // id="14" data-slide-name="unresolved_start"
+      // id="12" data-slide-name="unresolved_start"
+      // id="13" data-slide-name="status_transitions"
 
       var framesSelected = [1,2,4,5,6,7,8,9,10,11,12,13];
       var content =jQuery("#final_template");
@@ -90,7 +89,7 @@
     collectActivities: function() {
       return jQuery('.conversation.minimized,.conversation.activity')
     },
-    getColloborators: function(req,agent){
+    getcollaborators: function(req,agent){
       var arr = []
       for(var key in this.users) {
         if(key !="undefined" && key != req && key != agent)
@@ -202,7 +201,7 @@
         arr.push("First Response within SLA")
       if(!ticket.isescalated)
         arr.push("Resolved Within SLA")
-      if(this.getColloborators(ticket.requester_name,ticket.responder_name).length == 0)
+      if(this.getcollaborators(ticket.requester_name,ticket.responder_name).length == 0)
         arr.push("Go Getter!")
       else
         arr.push("Great Team Work!")
@@ -216,7 +215,7 @@
     },
     getCustomerRating: function(){
       return Math.floor(Math.random() * 3) + 3  ;
-    },
+    },    
     
     fetchData: function() {
       jQuery('#activity_toggle').trigger('click');
@@ -241,15 +240,28 @@
           agent_image: that.users[ticket.responder_name] || "/assets/misc/profile_blank_thumb.jpg",
           requester_image: that.users[ticket.requester_name] || "/assets/misc/profile_blank_thumb.jpg",
           ticket: ticket,
-          colloborators: that.getColloborators(ticket.requester_name,ticket.responder_name).slice(0,3),
-          colloborators_length:that.getColloborators(ticket.requester_name,ticket.responder_name).length,
+          collaborators: that.getcollaborators(ticket.requester_name,ticket.responder_name).slice(0,3),
+          collaborators_length:that.getcollaborators(ticket.requester_name,ticket.responder_name).length,
           image_mapping: that.users,
           success_params: that.getSuccessParams(ticket),
           is_agent_responded: that.getPublicNotes(that.notes).length > 0,
           is_customer_responded: that.getRequesterReplies(that.notes).length > 0,
           customer_rating: that.getCustomerRating(),
+          note_count: that.notes.length,
 
         }
+        data.is_unresolved = (data.ticket.status_name != "Resolved" && data.ticket.status_name != "Closed");
+        try {
+          data.fr_dueby_words = moment(ticket.frDueBy.split("T")[0], "YYYY-MM-DD").fromNow();
+          data.resolution_dueby_words = moment(ticket.due_by.split("T")[0], "YYYY-MM-DD").fromNow();
+          data.time_elapsed = moment(ticket.created_at.split("T")[0], "YYYY-MM-DD").fromNow();
+        } catch(e) {
+          data.fr_dueby_words = "";
+          data.resolution_dueby_words = "";
+          data.time_elapsed = "";
+          console.error('dueby parse err' + e);
+        }
+        debugger
         that.replaceTemplate(data)
       });
 

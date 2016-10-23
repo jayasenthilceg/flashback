@@ -25,17 +25,31 @@
 		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="500">
 		<div class="req-info fragment" data-autoslide="500"> 	
 			<div>
-				Tone lee
+				<%-data.requester_name%>
 			</div>
 			<div>
-				Acme Inc
+				<%-data.company_name%>
 			</div>
 		</div>
 		<div class="slide-1-content animated" data-slide="100">
-			
+		<% if(data.ticket.source_name == "Phone" ) { %>
 			<div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
-				<img src="{{ 'twitter_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
+				<img src="{{ 'phone_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
 			</div>
+    <% } else if(data.ticket.source_name == "Twitter" ) { %>        
+      <div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
+        <img src="{{ 'twitter_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
+      </div>
+    <% } else  if(data.ticket.source_name == "Facebook" ) { %>
+      <div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
+        <img src="{{ 'facebook_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
+      </div>
+    <% } else { %>
+      <div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
+        <img src="{{ 'mail_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
+      </div>
+    <% } %>
+
 			<div class="fragment clr-light-blue c-font-large animated fadeInLeft" data-autoslide="1000">
 				Reported <%-data.time_elapsed%>
 			</div>

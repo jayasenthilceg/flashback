@@ -247,7 +247,16 @@
     },
     getCustomerRating: function(){
       return Math.floor(Math.random() * 3) + 3  ;
-    },    
+    },
+    getCompanyName: function(){
+      var company = jQuery('.tkt-sidebar #requester_info #contact_info_default .infoblock .user-company-name').attr('title')
+      if(company != undefined){
+        return company;
+      } else {
+        return ""
+      }
+      
+    },
     
     fetchData: function() {
       jQuery('#activity_toggle').trigger('click');
@@ -280,9 +289,10 @@
           is_customer_responded: that.getRequesterReplies(that.notes).length > 0,
           customer_rating: that.getCustomerRating(),
           note_count: that.notes.length,
-          events: that.getLatestEvents()
-
+          events: that.getLatestEvents(),
+          company_name: that.getCompanyName()
         }
+        data.source_image = data.ticket.source_name.toLowerCase() + ".png";
         data.is_unresolved = (data.ticket.status_name != "Resolved" && data.ticket.status_name != "Closed");
         try {
           data.fr_dueby_words = moment(ticket.frDueBy.split("T")[0], "YYYY-MM-DD").fromNow();

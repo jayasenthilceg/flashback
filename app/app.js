@@ -4,16 +4,18 @@
       if(page_type == "ticket") {
         var fbbtn = '<li class="flashback-btn ticket-btns"><a href="#flashback" id="video-click-btn"><button class="btn tooltip">Flashback</button></a></li>';
         jQuery(".collapse-content li:nth-child(1)").prepend(fbbtn);
-        // var audioElement  = document.createElement('audio');
-        // audioElement.setAttribute('id', 'audio-player');
-        // audioElement.setAttribute('src', "https://s3-us-west-2.amazonaws.com/ganguly/Olympics+Medal+Tracker.mp3");
-        var audioBtn = '<audio id="audio-player" src='+this.getmp3('happy1')+'></audio>';
-        jQuery(".collapse-content li:nth-child(1)").prepend(audioBtn);
+        jQuery(".collapse-content li:nth-child(1)").prepend('<audio id="audio-player"></audio>');
+
+
         var audioElement = jQuery("#audio-player")[0];
-        audioElement.loop = true;
+          var _self = this;
         jQuery('#video-click-btn').click(function(){
-          audioElement.play();
+            _self.playSong();
         });
+          jQuery('.remodal-close').click(function(){
+              audioElement.pause();
+          });
+
         this.initializeTemplates();
         this.audioElement = audioElement;
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
@@ -25,13 +27,13 @@
           });
           Reveal.addEventListener('autoslideresumed', function(e) {
             jQuery("#audio-player")[0].play();
-          })
+          });
           Reveal.addEventListener('autoslidepaused', function(e) {
             jQuery("#audio-player")[0].pause();
-          })
+          });
           Reveal.addEventListener('lastSlide', function(e) {
             jQuery("#audio-player")[0].pause();
-          })
+          });
 
           jQuery("#replay-btn").click(function(){
               Reveal.slide(0);
@@ -46,6 +48,21 @@
     initializeTemplates: function () {            
         _.templateSettings.variable = "data";
         this.fetchData();
+    },
+      playSong: function() {
+          var status_name = domHelper.ticket.getTicketInfo().helpdesk_ticket.status_name;
+          var is_resolved = (status_name == "Resolved" || status_name == "Closed");
+          var happySongs = ["happy1", "happy2"];
+          var neutralSongs = ["neutral1", "neutral2"];
+          var randomValue = Math.floor(Math.random() * 10) % 2;
+            if(is_resolved) {
+                mp3Name = this.getmp3(happySongs[randomValue]);
+            } else {
+                mp3Name = this.getmp3(neutralSongs[randomValue]);
+            }
+        var audioElement = jQuery("#audio-player")[0];
+        audioElement.setAttribute('src', mp3Name);
+        audioElement.play();
     },
     addUser: function($userEl) {
       this.users[($userEl).attr('alt')] = ($userEl).data('src') || "/assets/misc/profile_blank_thumb.jpg";

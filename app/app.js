@@ -28,7 +28,7 @@
         this.fetchData();        
     },
     replaceTemplate: function(data){
-      var arr = [1,2,3,4,5,6,7,8,9,10,11];
+      var arr = [1,2,4,5,6,7,8,9,10,11];
       var content =jQuery("#final_template");
       arr.each(function(a){
         var template = _.template(jQuery("script#"+a).html());
@@ -165,6 +165,20 @@
       // })
       // });
     },
+    get_success_params: function(ticket){
+      debugger
+      var arr =[]
+      if(!ticket.fr_escalated)
+        arr.push("First Response within SLA")
+      if(!ticket.isescalated)
+        arr.push("Resolved Within SLA")
+      if(this.getColloborators(ticket.requester_name,ticket.responder_name).length == 0)
+        arr.push("Go Getter!")
+      else
+        arr.push("Great Team Work!")
+
+      return arr
+    },
     timeLine: function(){
       return this.events.concat(this.notes).sort(function(a,b){
         return a.timestamp - b.timestamp
@@ -196,7 +210,7 @@
           colloborators: that.getColloborators(ticket.requester_name,ticket.responder_name).slice(0,3),
           colloborators_length:that.getColloborators(ticket.requester_name,ticket.responder_name).length,
           image_mapping: that.users,
-          success_params: ["First Response within SLA","Resolved Within SLA","Customer Happy","Kumutha happy"]
+          success_params: that.get_success_params(ticket)
 
         }
         // debugger

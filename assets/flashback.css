@@ -228,7 +228,8 @@
   font-size: 48px !important;
 }
 .clock-img-s-8 {
-	width: 250px;
+	width: 150px;
+	margin-bottom: 20px;
 }
 .s-9-pos {
 	width: 100%;
@@ -295,7 +296,24 @@
     -webkit-animation: zoomscale 1.5s ease-in-out infinite alternate;
     animation: zoomscale 1.5s ease-in-out infinite alternate;
 }
+.star-rating {
+	width: 50px;
+	margin-right:10px !important;
+	margin-left: 0px !important;
+	margin-bottom: 0px !important;
+}
+.req-info {
+	position: absolute;
+  bottom: 30%;
+  left: 23%;
+}
+.ticket-source {
+	width: 80px;
+	margin-right:20 !important;
+	margin-left:0 !important;
+	margin-bottom:0 !important;
 
+}
 @-webkit-keyframes zoomscale {
     0% {
         -webkit-transform: scale(1.0);

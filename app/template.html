@@ -22,12 +22,19 @@
 <!-- slide 1 ********************************* -->
 <script type="text/template" id="1" data-slide-name="ticket_creation">
 	<section data-background="#0000ff" data-transition="zoom" data-background-transition="fade" style="background-color:#0000ff;">
-		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="500">	
-		
+		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="500">
+		<div class="req-info fragment" data-autoslide="500"> 	
+			<div>
+				Tone lee
+			</div>
+			<div>
+				Acme Inc
+			</div>
+		</div>
 		<div class="slide-1-content animated" data-slide="100">
 			
 			<div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
-				<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
+				<img src="{{ 'twitter_logo.png' || asset_url }}" alt="replay" class="animated fadeInDown ticket-source">	
 			</div>
 			<div class="fragment clr-light-blue c-font-large animated fadeInLeft" data-autoslide="1000">
 				Created at OCT 2016
@@ -44,7 +51,7 @@
 	<!-- slide 2 ********************************* -->
 <script type="text/template" id="2" data-slide-name="agent_assignment">
   <% if (data.agent_name != "No Agent"){ %>
-	<section data-background="#feda01" data-transition="convex" data-background-transition="fade" style="background-color:#feda01;">
+	<section data-background="#feda01" data-transition="slide-in" data-background-transition="fade" style="background-color:#feda01;">
 			
 			<div class="t-left slide-2-con-1 animated fadeInDown" data-autoslide="10">
 				<div class="d-align-right">
@@ -163,7 +170,7 @@
 				<div class="agent-name s-6-font-color"><%-data.requester_name%></div>
 			</div>
 			<div class="fragment s-6-sec text-right" data-autoslide="1000">
-				<img src="{{ 'Ticket.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 s-6-ticket-img">
+				<img src="{{ 'ticket-new.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 s-6-ticket-img">
 			</div>
 			<div class="fragment s-6-sec-small" data-autoslide="1000">
 				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-img-size">
@@ -227,7 +234,7 @@
 	<!-- slide 8 ********************************* -->	
 <script type="text/template" id = "8" data-slide-name="ticket_closed">
   <% if(!data.ticket.isescalated) { %>
-	<section style="background-color:#000000;" data-transition="convex" data-background-transition="convex" data-background-color="#000000">
+	<section style="background-color:#000000;" data-transition="slide-in" data-background-transition="slide-in" data-background-color="#000000">
 		<div class="s-8-pos color-white">
       <% if (data.ticket.status_name == "Resolved" || data.ticket.status_name == "Closed") { %>
   			<div class="fragment" data-autoslide="1000">
@@ -294,7 +301,11 @@
 				<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 zoom-transition">
 			</div>
 			<div class="fragment" data-autoslide="1000">
-				<img src="{{ 'stars.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
+				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+				<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+				<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+				<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
 			</div>
 
 		</div>
@@ -309,7 +320,12 @@
 					<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-11">
 				</div>
 				<div class="fragment" data-autoslide="1000">
-					<img src="{{ 'small-stars.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
+					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+					<img src="{{ 'star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+					<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+					<img src="{{ 'silver_star.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 star-rating">
+					
 				</div>
 			</div>
 			

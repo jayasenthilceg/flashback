@@ -2,7 +2,7 @@
 <div class="widget">
 
   <div class="remodal-overlay">
-  <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+  <div class="remodal" data-remodal-id="flashback" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
 	  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
 		
 
@@ -28,31 +28,13 @@
 <link rel="stylesheet" type="text/css" href="{{ 'flashback.css' | asset_url }}">
 
 
-	<!-- <section id="slide5" data-background="#0389ad" data-transition="convex" data-background-transition="slide-out" >
-		<h2> <%- data.name %></h2>
-	    <% _.each( data.agents, function( agent ){ %>
-		     <li>
-		        <%- agent %>
-		    </li>
-	    <% }); %>
-	</section> -->
-
-	<!-- last slide replay button -->
-
-	<!-- <section data-background="#0389ad" data-transition="convex" data-background-transition="slide-out" >
-			
-				<img src="{{ 'replay.png' || asset_url }}" alt="replay" id="replay-btn" class="replay-btn mt-200">
-	</section>
- -->
-
-
 <!-- slide 1 ********************************* -->
 <script type="text/template" id="1">
-	<section data-background="#0000ff" data-transition="zoom" data-background-transition="fade" style="background-color:#0000ff;" class="stack">
+	<section data-background="#0000ff" data-transition="zoom" data-background-transition="fade" style="background-color:#0000ff;">
 		
-		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="1000">	
+		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="500">	
 		
-		<div class="fragment slide-1-content animated" data-slide="100">
+		<div class="slide-1-content animated" data-slide="100">
 			
 			<div class="fragment d-align-right" data-autoslide="1000" data-transition="fade">
 				<img src="{{ 'Ticket.png' || asset_url }}" alt="replay" class="animated fadeInDown">	
@@ -158,7 +140,7 @@
 </script>
 <!-- slide 5 ********************************* -->	
 <script type="text/template" id="5">
-	<section data-background-color="#00eabc" data-transition="slide-in fade-out" data-background-transition="slide-out" style="background-color:#00eabc;">
+	<section data-background-color="#00eabc" data-transition="concave" data-background-transition="concave" style="background-color:#00eabc;">
 		
 		<div class="s-4-pos">
 			<div class="s-4-sec text-left " data-autoslide="100" data-transition="fade-in">
@@ -180,19 +162,19 @@
 </script>
 	<!-- slide 6 ********************************* -->	
 <script type="text/template" id="6">
-	<section style="background-color:#ffffff;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#ffffff">
+	<section style="background-color:#ffffff;" data-transition="zoom-in" data-background-transition="zoom-in" data-background-color="#ffffff">
 
 		<div class="s-6-top">
 			<div class="s-6-sec-small" data-autoslide="100">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0">
+				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-img-size">
 				<div class="agent-name s-6-font-color"><%-data.agent_name%></div>
 			</div>
 			<div class="fragment s-6-sec text-right" data-autoslide="1000">
 				<img src="{{ 'Ticket.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 s-6-ticket-img">
 			</div>
 			<div class="fragment s-6-sec-small" data-autoslide="1000">
-				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0">
-				<div class="agent-name s-6-font-color"><%-data.agent_name%></div>
+				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-img-size">
+				<div class="agent-name s-6-font-color "><%-data.agent_name%></div>
 			</div>
 		</div>
 
@@ -226,7 +208,7 @@
 
 	<!-- slide 7 ********************************* -->	
 <script type="text/template" id = "7">
-	<section style="background-color:#0000ff;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#0000ff">
+	<section style="background-color:#0000ff;" data-transition="zoom-out" data-background-transition="zoom-out" data-background-color="#0000ff">
 		
 		<div class="s-4-pos s-7">
 			<div class="s-4-sec text-left " data-autoslide="100" data-transition="fade-in">
@@ -240,10 +222,10 @@
 			</div>
 
 			<div class="s-4-sec fragment" data-autoslide="1000">
-				<img src="{{ 'mail-icon.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 fb-mail-icon">
+				<img src="{{ 'mail-icon.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 fb-mail-icon width-transition">
 			</div>
 
-			<div class="s-4-sec fragment text-right" data-autoslide="1000">
+			<div class="s-4-sec fragment text-right float-right-sec" data-autoslide="1000">
 				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
 				<div class="agent-name"><%-data.agent_name%></div>
 			</div>
@@ -253,7 +235,7 @@
 </script>
 	<!-- slide 8 ********************************* -->	
 <script type="text/template" id = "8">
-	<section style="background-color:#000000;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#000000">
+	<section style="background-color:#000000;" data-transition="convex" data-background-transition="convex" data-background-color="#000000">
 		<div class="s-8-pos color-white">
 			<div class="fragment" data-autoslide="1000">
 				<img src="{{ 'Illustration.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
@@ -297,8 +279,8 @@
 <script type="text/template" id = "10">	
 	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
 		<div class="s-8-pos color-white">
-			<div class="fragment" data-autoslide="1000">
-				<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">
+			<div class="fragment" data-autoslide="2000">
+				<img src="{{ 'Happy.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8 zoom-transition">
 			</div>
 			<div class="fragment" data-autoslide="1000">
 				<img src="{{ 'stars.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 clock-img-s-8">

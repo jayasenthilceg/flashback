@@ -2,7 +2,7 @@
   return {
     initialize: function() {
       if(page_type == "ticket") {
-        var fbbtn = '<li class="flashback-btn ticket-btns"><a href="#modal" id="video-click-btn"><button class="btn tooltip">Flashback</button></a></li>';
+        var fbbtn = '<li class="flashback-btn ticket-btns"><a href="#flashback" id="video-click-btn"><button class="btn tooltip">Flashback</button></a></li>';
         jQuery(".collapse-content li:nth-child(1)").prepend(fbbtn);
         this.initializeTemplates();
         jQuery.getScript("{{'reveal.js' | asset_url}}", function () {
@@ -34,7 +34,7 @@
         var template = _.template(jQuery("script#"+a).html());
         content.append(template(data));
       })
-      debugger
+      // debugger
         
       jQuery(".reveal .slides").prepend(content.html());
     },
@@ -197,7 +197,7 @@
           image_mapping: that.users
 
         }
-        debugger
+        // debugger
         that.replaceTemplate(data)
         // debugger
       });

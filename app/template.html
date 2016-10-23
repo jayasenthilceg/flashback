@@ -57,13 +57,10 @@
 			
 			<div class="t-left slide-2-con-1 animated fadeInDown" data-autoslide="10">
 				<div class="d-align-right">
-					<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-img-size">
+					<img src="{{ 'time-efficiency.png' || asset_url }}" alt="replay" class="animated fadeInDown agent-img-size">
 				</div>
-				<div class="c-s2-name c-font-large">
-					Created at OCT 2016
-				</div>
-				<div class="font-extra-large c-s2-h">
-					<%-data.ticket.subject%>
+				<div class="font-extra-large c-s2-h mt-50">
+					Timer Started
 				</div>
 			</div>
 
@@ -210,11 +207,11 @@
 				<div class="agent-name" data-autoslide="1000"><%-data.agent_name%> + <span class="agent-count"> <%-data.colloborators_length%> </span> </div>
 			</div>
 
-			<div class="s-4-sec fragment" data-autoslide="1000">
+			<div class="s-4-sec fragment" data-autoslide="2000">
 				<img src="{{ 'mail-icon.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 fb-mail-icon width-transition">
 			</div>
 
-			<div class="s-4-sec fragment text-right float-right-sec" data-autoslide="1000">
+			<div class="s-4-sec fragment text-right float-right-sec" data-autoslide="3000">
 				<img src="<%-data.agent_image%>" alt="" class="animated fadeInDown mt-0 agent-pos agent-img-size">
 				<div class="agent-name"><%-data.requester_name%></div>
 			</div>

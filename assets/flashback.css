@@ -285,7 +285,12 @@
 .fb-angry-icon.zoom-transition {
 	width: 150px;
 }
-
+.s-12-con {
+	margin-top: 50px !important;
+}
+.s-13-con {
+	margin-top: 50px !important;
+}
 .zoom-transition {  
     -webkit-animation: zoomscale 1.5s ease-in-out infinite alternate;
     animation: zoomscale 1.5s ease-in-out infinite alternate;

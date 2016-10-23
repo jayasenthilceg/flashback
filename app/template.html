@@ -19,11 +19,9 @@
 <link rel="stylesheet" type="text/css" href="{{ 'animate.css' | asset_url }}">
 <link rel="stylesheet" type="text/css" href="{{ 'flashback.css' | asset_url }}">
 
-
 <!-- slide 1 ********************************* -->
 <script type="text/template" id="1" data-slide-name="ticket_creation">
 	<section data-background="#0000ff" data-transition="zoom" data-background-transition="fade" style="background-color:#0000ff;">
-		
 		<img src="<%-data.requester_image%>" alt="replay" class="animated fadeInDown agent-slide-1 agent-img-size" data-autoslide="500">	
 		
 		<div class="slide-1-content animated" data-slide="100">
@@ -294,5 +292,65 @@
 		</div>
 	</section>
 </script>
+<!-- slide 12 ********************************* -->
+<script type="text/template" id = "12">	
+	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
+		<div class="s-12">
+			
+			<div class="s-12-con">
+					<div class="fragment tick-space" data-autoslide="1000">
+						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+						<span>
+							Tesla
+						</span>
+					</div>
+					<div class="fragment tick-space" data-autoslide="1000">
+						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+						<span>
+							Solar City	
+						</span>
+					</div>
+					<div class="fragment tick-space" data-autoslide="1000">
+						<img src="{{ 'tick.png' || asset_url }}" alt="" class="animated fadeInDown mt-0 tick-s-11">
+						<span>
+							Paypal
+						</span>
+					</div>
+			</div>
+
+		</div>
+	</section>
+</script>
+
+<script type="text/template" id = "13">	
+	<section style="background-color:#fb216f;" data-transition="slide-in fade-out" data-background-transition="slide-out" data-background-color="#fb216f">
+		<div class="s-12">
+			
+			<div class="s-13-con">
+					<div class="fragment tick-space" data-autoslide="1000">
+						<span>
+							Solved
+						</span>
+					</div>
+					<div class="fragment tick-space" data-autoslide="1000">
+						<span>
+							Reopen	
+						</span>
+					</div>
+					<div class="fragment tick-space" data-autoslide="1000">
+						<span>
+							Closed
+						</span>
+					</div>
+			</div>
+
+		</div>
+	</section>
+</script>
+
+
+
+
+
 <script id="final_template" type="text/template">
 </script>

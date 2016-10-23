@@ -63,16 +63,16 @@
       // id="6" data-slide-name="agent_collaboration"
       // id="7" data-slide-name="agent_reply"
       // id="8" data-slide-name="ticket_closed"
-      // id="9" data-slide-name="custom_rating"
-      // id="10" data-slide-name="time_remaining"
-      // id="11" data-slide-name="final_stats"
+      // id="9" data-slide-name="customer_rating"
+      // id="10" data-slide-name="stars"	
+      // id="11" data-slide-name="final_stats"	
       // id="12" data-slide-name="status_transitions"
       // id="13" data-slide-name="status_pending"
       // id="14" data-slide-name="unresolved_start"
 
-      var arr = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+      var framesSelected = [1,2,3,4,5,6,7,8,9,10,11,12,13];
       var content =jQuery("#final_template");
-      arr.each(function(a){
+      framesSelected.each(function(a){
         var template = _.template(jQuery("script#"+a).html());
         content.append(template(data));
       })
@@ -216,8 +216,7 @@
       // })
       // });
     },
-    get_success_params: function(ticket){
-      debugger
+    getSuccessParams: function(ticket){
       var arr =[]
       if(!ticket.fr_escalated)
         arr.push("First Response within SLA")
@@ -235,6 +234,9 @@
         return a.timestamp - b.timestamp
       });
     },
+    getCustomerRating: function(){
+      return Math.floor(Math.random() * 3) + 3  ;
+    },
     
     fetchData: function() {
       jQuery('#activity_toggle').trigger('click');
@@ -246,8 +248,10 @@
         that.generateEvents();
         that.timeLine();
         jQuery.map(jQuery('.conversation .avatar-wrap .preview_pic img.thumb'), 
-            function(userEl) {
-              that.addUser(jQuery(userEl));
+            function(userEl) { 
+              $userEl = jQuery(userEl)
+              if($userEl.parents(".redactor.conversation_thread").length == 0)
+                that.addUser($userEl);
             } 
         );
         var ticket = domHelper.ticket.getTicketInfo().helpdesk_ticket;
@@ -260,7 +264,10 @@
           colloborators: that.getColloborators(ticket.requester_name,ticket.responder_name).slice(0,3),
           colloborators_length:that.getColloborators(ticket.requester_name,ticket.responder_name).length,
           image_mapping: that.users,
-          success_params: that.get_success_params(ticket)
+          success_params: that.getSuccessParams(ticket),
+          is_agent_responded: that.getPublicNotes(that.notes).length > 0,
+          is_customer_responded: that.getRequesterReplies(that.notes).length > 0,
+          customer_rating: that.getCustomerRating(),
 
         }
         that.replaceTemplate(data)

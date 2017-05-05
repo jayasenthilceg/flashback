@@ -1,4 +1,4 @@
-## Freshdesk App Project
+## Freshdesk App Project 
 
 Congratulations on creating your App Project! Feel free to replace this text with your project description.
 
